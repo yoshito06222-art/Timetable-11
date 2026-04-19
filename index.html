@@ -5,68 +5,95 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="時間割">
+<meta name="apple-mobile-web-app-title" content="Timetable">
 <link rel="apple-touch-icon" href="icon.png">
-<title>時間割</title>
+<title>Timetable</title>
 <style>
-:root{--bg:#fafafa;--surface:#ffffff;--surface2:#f0f0f0;--border:#e0e0e0;--accent:#222222;--accent2:#555555;--text:#111111;--muted:#888888;--danger:#e53935;--success:#43a047;--warning:#f9a825;--radius:12px}
-.theme-minimal{--bg:#fafafa;--surface:#ffffff;--surface2:#f0f0f0;--border:#e0e0e0;--accent:#222222;--accent2:#555555;--text:#111111;--muted:#888888}
-.theme-white{--bg:#ffffff;--surface:#f7f8fa;--surface2:#eef0f3;--border:#dde1e7;--accent:#5865f2;--accent2:#2ecc71;--text:#1a1c1e;--muted:#7a8290}
-.theme-cream{--bg:#fdfaf5;--surface:#fff8ee;--surface2:#f3ecdf;--border:#e6ddd0;--accent:#c07c3a;--accent2:#7ab648;--text:#2d2318;--muted:#9a8878}
-.theme-cool{--bg:#f5f7fb;--surface:#ffffff;--surface2:#eaf0fa;--border:#d0d9ea;--accent:#2563eb;--accent2:#0ea5e9;--text:#0f1c36;--muted:#6b7a99}
-.theme-light{--bg:#f2f3f5;--surface:#fff;--surface2:#e3e5e8;--border:#c4c9d0;--accent:#5865f2;--accent2:#1a8a4a;--text:#2e3338;--muted:#696f7a}
-.theme-dark{--bg:#313338;--surface:#2b2d31;--surface2:#1e1f22;--border:#1e1f22;--accent:#5865f2;--accent2:#57f287;--text:#dbdee1;--muted:#949ba4}
-.theme-darker{--bg:#1e1f22;--surface:#2b2d31;--surface2:#313338;--border:#111214;--accent:#5865f2;--accent2:#00b0f4;--text:#dbdee1;--muted:#80848e}
-.theme-midnight{--bg:#0d0d0f;--surface:#1a1a1e;--surface2:#111114;--border:#2a2a2f;--accent:#5865f2;--accent2:#eb459e;--text:#dbdee1;--muted:#7a7e86}
-.theme-classic{--bg:#23272a;--surface:#2c2f33;--surface2:#36393f;--border:#202225;--accent:#7289da;--accent2:#faa61a;--text:#ffffff;--muted:#99aab5}
-.theme-canary{--bg:#36393f;--surface:#40444b;--surface2:#2f3136;--border:#202225;--accent:#7289da;--accent2:#43b581;--text:#dcddde;--muted:#8e9297}
+:root{
+  --bg:#fafafa;--sur:#fff;--sur2:#f0f0f0;--brd:#e0e0e0;
+  --acc:#222;--acc2:#555;--txt:#111;--mut:#888;
+  --red:#e53935;--grn:#43a047;--yel:#f9a825;--ora:#fb923c;
+}
+.th-minimal{--bg:#fafafa;--sur:#fff;--sur2:#f0f0f0;--brd:#e0e0e0;--acc:#222;--acc2:#555;--txt:#111;--mut:#888}
+.th-white{--bg:#fff;--sur:#f7f8fa;--sur2:#eef0f3;--brd:#dde1e7;--acc:#5865f2;--acc2:#2ecc71;--txt:#1a1c1e;--mut:#7a8290}
+.th-cream{--bg:#fdfaf5;--sur:#fff8ee;--sur2:#f3ecdf;--brd:#e6ddd0;--acc:#c07c3a;--acc2:#7ab648;--txt:#2d2318;--mut:#9a8878}
+.th-cool{--bg:#f5f7fb;--sur:#fff;--sur2:#eaf0fa;--brd:#d0d9ea;--acc:#2563eb;--acc2:#0ea5e9;--txt:#0f1c36;--mut:#6b7a99}
+.th-light{--bg:#f2f3f5;--sur:#fff;--sur2:#e3e5e8;--brd:#c4c9d0;--acc:#5865f2;--acc2:#1a8a4a;--txt:#2e3338;--mut:#696f7a}
+.th-dark{--bg:#313338;--sur:#2b2d31;--sur2:#1e1f22;--brd:#1e1f22;--acc:#5865f2;--acc2:#57f287;--txt:#dbdee1;--mut:#949ba4}
+.th-darker{--bg:#1e1f22;--sur:#2b2d31;--sur2:#313338;--brd:#111214;--acc:#5865f2;--acc2:#00b0f4;--txt:#dbdee1;--mut:#80848e}
+.th-midnight{--bg:#0d0d0f;--sur:#1a1a1e;--sur2:#111114;--brd:#2a2a2f;--acc:#5865f2;--acc2:#eb459e;--txt:#dbdee1;--mut:#7a7e86}
+.th-classic{--bg:#23272a;--sur:#2c2f33;--sur2:#36393f;--brd:#202225;--acc:#7289da;--acc2:#faa61a;--txt:#fff;--mut:#99aab5}
+.th-canary{--bg:#36393f;--sur:#40444b;--sur2:#2f3136;--brd:#202225;--acc:#7289da;--acc2:#43b581;--txt:#dcddde;--mut:#8e9297}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,'Helvetica Neue',sans-serif;display:flex;flex-direction:column;
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:-apple-system,'Helvetica Neue',sans-serif;
+  display:flex;flex-direction:column;
   padding-left:env(safe-area-inset-left);
   padding-right:env(safe-area-inset-right);
 }
-.header{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 16px;padding-top:max(13px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.header h1{font-size:17px;font-weight:700;color:var(--accent)}
-.icon-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);height:34px;padding:0 12px;border-radius:8px;display:flex;align-items:center;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}
-.nav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
-.nav-tab{flex:1;padding:11px 4px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
-.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:env(safe-area-inset-bottom)}
-.banners{padding:5px 10px 3px;display:flex;flex-wrap:wrap;gap:4px}
-.banner-chip{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
-.chip-q{background:rgba(88,101,242,.15);color:var(--accent)}
-.chip-sem{background:rgba(67,160,71,.15);color:var(--success)}
-.chip-hol{background:rgba(249,168,37,.18);color:var(--warning)}
-.week-nav{display:flex;align-items:center;justify-content:space-between;padding:5px 10px 3px;flex-shrink:0}
-.week-nav-label{font-size:13px;color:var(--muted);font-weight:500;text-align:center;flex:1}
-.wnav-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:26px;font-weight:300;transition:background .15s;flex-shrink:0;line-height:1}
-.wnav-btn:active{background:var(--surface2)}
+/* header */
+.hdr{background:var(--sur);border-bottom:1px solid var(--brd);
+  padding:13px 16px;padding-top:max(13px,env(safe-area-inset-top));
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hdr-title{font-size:17px;font-weight:700;color:var(--acc)}
+.hdr-btn{background:var(--sur2);border:1px solid var(--brd);color:var(--txt);
+  height:34px;padding:0 12px;border-radius:8px;font-size:12px;font-weight:600;
+  white-space:nowrap;cursor:pointer}
+/* nav */
+.nav{display:flex;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
+.nav-tab{flex:1;padding:11px 4px;text-align:center;font-size:12px;color:var(--mut);
+  cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.nav-tab.on{color:var(--acc);border-bottom-color:var(--acc)}
+/* views */
+.view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding-bottom:max(16px,env(safe-area-inset-bottom))}
+/* cal view */
+#vcal{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.banners{padding:5px 10px 3px;display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0}
+.chip{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
+.chip-q{background:rgba(88,101,242,.15);color:var(--acc)}
+.chip-s{background:rgba(67,160,71,.15);color:var(--grn)}
+.chip-h{background:rgba(249,168,37,.18);color:var(--yel)}
+/* week nav */
+.wnav{display:flex;align-items:center;justify-content:space-between;padding:5px 10px 3px;flex-shrink:0}
+.wnav-lbl{font-size:13px;color:var(--mut);font-weight:500;text-align:center;flex:1}
+.wnav-btn{background:var(--sur);border:1px solid var(--brd);color:var(--txt);
+  width:48px;height:48px;border-radius:12px;font-size:26px;font-weight:300;
+  display:flex;align-items:center;justify-content:center;cursor:pointer}
+.wnav-btn:active{background:var(--sur2)}
+/* cal grid */
 .cal-outer{flex:1;overflow:hidden;padding:4px 8px 0}
-/* 5限の下にホームインジケーター分の余白 */
-#cal-grid{padding-bottom:env(safe-area-inset-bottom)}
-/* Calendar: 6 day columns (Mon-Sat) */
 .cal{display:grid;grid-template-columns:42px repeat(6,1fr);gap:3px;height:100%}
-.cal-head{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px 0}
-.cal-head-day{font-size:10px;font-weight:700;color:var(--muted);line-height:1.2}
-.cal-head-date{font-size:14px;font-weight:700;color:var(--text);line-height:1.2;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%}
-.cal-head-date.today-circle{background:var(--accent);color:#fff}
-.cal-head.hol-h .cal-head-day,.cal-head.hol-h .cal-head-date{color:var(--warning)}
-.time-col{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-start;padding-top:5px;padding-right:4px}
-.tl-p{font-weight:700;font-size:10px;color:var(--text);line-height:1.3}
-.tl-t{font-size:8px;color:var(--muted);line-height:1.3;white-space:pre;text-align:right}
-.cal-cell{background:var(--surface);border:1px solid var(--border);border-radius:6px;position:relative;cursor:pointer;transition:background .15s;overflow:hidden}
-.cal-cell:active{background:var(--surface2)}
-.cal-cell.hol-cell{background:rgba(249,168,37,.04);border-color:rgba(249,168,37,.15)}
-.class-block{position:absolute;inset:2px;border-radius:4px;padding:3px 4px;display:flex;flex-direction:column;overflow:hidden}
-.cb-name{font-size:10px;font-weight:700;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;flex-shrink:0}
-.cb-spacer{flex:1;min-height:0}
-.cb-room{font-size:9px;opacity:.8;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-shrink:0}
-.cb-badge{position:absolute;top:2px;right:2px;width:6px;height:6px;border-radius:50%;background:var(--warning)}
-.cb-single{position:absolute;top:2px;right:10px;width:6px;height:6px;border-radius:50%;background:var(--accent2)}
-.ev-dot{position:absolute;bottom:2px;left:2px;right:2px;font-size:8px;color:var(--accent2);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:1}
-.memo-block{position:absolute;inset:2px;border-radius:4px;padding:3px 5px;background:rgba(249,168,37,.12);border-left:3px solid var(--warning);display:flex;flex-direction:column;overflow:hidden}
-.memo-text{font-size:9px;color:var(--warning);line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.cal-hd{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px 0}
+.cal-hd-day{font-size:10px;font-weight:700;color:var(--mut);line-height:1.3}
+.cal-hd-date{font-size:14px;font-weight:700;color:var(--txt);width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;border-radius:50%}
+.cal-hd-date.today{background:var(--acc);color:#fff}
+.cal-hd.hol .cal-hd-day,.cal-hd.hol .cal-hd-date{color:var(--yel)}
+.tcol{display:flex;flex-direction:column;align-items:flex-end;
+  justify-content:flex-start;padding:5px 4px 0 0}
+.tcol-p{font-weight:700;font-size:10px;color:var(--txt);line-height:1.3}
+.tcol-t{font-size:8px;color:var(--mut);line-height:1.3;white-space:pre;text-align:right}
+.cell{background:var(--sur);border:1px solid var(--brd);border-radius:6px;
+  position:relative;cursor:pointer;overflow:hidden;transition:background .15s}
+.cell:active{background:var(--sur2)}
+.cell.hol{background:rgba(249,168,37,.04);border-color:rgba(249,168,37,.15)}
+/* class block */
+.cblk{position:absolute;inset:2px;border-radius:4px;padding:3px 4px;
+  display:flex;flex-direction:column;overflow:hidden}
+.cblk-name{font-size:10px;font-weight:700;line-height:1.25;overflow:hidden;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;flex-shrink:0}
+.cblk-sp{flex:1;min-height:0}
+.cblk-room{font-size:9px;opacity:.8;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-shrink:0}
+.cblk-dot{position:absolute;top:2px;right:2px;width:6px;height:6px;border-radius:50%;background:var(--yel)}
+.ev-dot{position:absolute;bottom:2px;left:2px;right:2px;font-size:8px;
+  color:var(--acc2);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.memo-blk{position:absolute;inset:2px;border-radius:4px;padding:3px 5px;
+  background:rgba(249,168,37,.12);border-left:3px solid var(--yel);overflow:hidden}
+.memo-txt{font-size:9px;color:var(--yel);line-height:1.3;overflow:hidden;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
 .c0{background:rgba(124,106,247,.22);border-left:3px solid #7c6af7}
 .c1{background:rgba(94,234,212,.18);border-left:3px solid #5eead4}
 .c2{background:rgba(251,191,36,.18);border-left:3px solid #fbbf24}
@@ -75,168 +102,201 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'Helvetica
 .c5{background:rgba(251,146,60,.18);border-left:3px solid #fb923c}
 .c6{background:rgba(232,121,249,.18);border-left:3px solid #e879f9}
 .c7{background:rgba(56,189,248,.18);border-left:3px solid #38bdf8}
-.sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:flex;align-items:flex-end;justify-content:center}
-.sheet{background:var(--surface);border-radius:16px 16px 0 0;width:100%;max-width:600px;padding:14px 14px 0;padding-bottom:max(36px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
-.sheet-title{font-size:12px;color:var(--muted);text-align:center;margin-bottom:4px}
-.sheet-btn{background:var(--surface2);border:none;color:var(--text);border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;text-align:center;width:100%}
-.sheet-btn.accent{background:var(--accent);color:#fff}
-.sheet-cancel{background:none;border:none;color:var(--muted);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;width:100%;text-align:center;margin-top:2px}
-.list-wrap{padding:10px;display:flex;flex-direction:column;gap:6px}
-.assign-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;cursor:pointer}
-.assign-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);cursor:pointer;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.assign-check.done{background:var(--success);border-color:var(--success)}
-.assign-check.done::after{content:'v';font-size:10px;color:#fff;font-weight:900}
-.assign-info{flex:1;min-width:0}
+/* assign list */
+.alist{padding:10px;display:flex;flex-direction:column;gap:6px}
+.aitem{background:var(--sur);border:1px solid var(--brd);border-radius:10px;
+  padding:10px 12px;display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.achk{width:20px;height:20px;border-radius:50%;border:2px solid var(--brd);
+  cursor:pointer;flex-shrink:0;margin-top:1px;display:flex;align-items:center;
+  justify-content:center;transition:all .2s}
+.achk.done{background:var(--grn);border-color:var(--grn)}
+.achk.done::after{content:'✓';font-size:10px;color:#fff;font-weight:900}
+.ainfo{flex:1;min-width:0}
 .aname{font-size:13px;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .aname.done{text-decoration:line-through;opacity:.5}
-.ameta{font-size:11px;color:var(--muted);margin-top:2px}
-.anote-preview{font-size:11px;color:var(--muted);margin-top:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ameta{font-size:11px;color:var(--mut);margin-top:2px}
+.anote{font-size:11px;color:var(--mut);margin-top:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .adue{font-size:10px;margin-top:3px;padding:1px 6px;border-radius:20px;display:inline-block}
-.due-over{background:rgba(229,57,53,.15);color:var(--danger)}
-.due-today{background:rgba(249,168,37,.2);color:var(--warning)}
-.due-soon{background:rgba(251,146,60,.18);color:#fb923c}
-.due-ok{background:rgba(67,160,71,.15);color:var(--success)}
-.settings-wrap{padding:10px;display:flex;flex-direction:column;gap:12px}
-.s-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.s-sec-hdr{padding:10px 14px;font-size:13px;font-weight:700;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.s-item{padding:9px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;cursor:pointer}
-.s-item:last-child{border-bottom:none}
-.s-item-l{flex:1;min-width:0}
-.s-item-name{font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:13px}
-.s-item-sub{font-size:10px;color:var(--muted);margin-top:1px}
-.s-badge{font-size:10px;padding:2px 7px;border-radius:20px;white-space:nowrap;margin-left:8px;flex-shrink:0}
-.bq{background:rgba(88,101,242,.18);color:var(--accent)}
-.bs{background:rgba(67,160,71,.15);color:var(--success)}
-.bh{background:rgba(249,168,37,.18);color:var(--warning)}
-.be{background:rgba(94,234,212,.18);color:var(--accent2)}
-.theme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:14px}
-.theme-swatch{height:36px;border-radius:10px;cursor:pointer;border:2px solid transparent;transition:border-color .15s}
-.theme-swatch.sel{border-color:var(--text)}
-.theme-label{font-size:10px;color:var(--muted);text-align:center;margin-top:4px}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:flex;align-items:flex-end;justify-content:center}
-.overlay.center{align-items:center}
-.modal{background:var(--surface);border-radius:18px 18px 0 0;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 14px 0;padding-bottom:max(40px,env(safe-area-inset-bottom))}
-.overlay.center .modal{border-radius:16px;margin:12px;max-height:86vh}
-.modal-drag{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px}
+.due-ov{background:rgba(229,57,53,.15);color:var(--red)}
+.due-td{background:rgba(249,168,37,.2);color:var(--yel)}
+.due-sn{background:rgba(251,146,60,.18);color:var(--ora)}
+.due-ok{background:rgba(67,160,71,.15);color:var(--grn)}
+.adel{background:none;border:none;color:var(--red);cursor:pointer;
+  font-size:12px;font-weight:600;padding:4px 6px;flex-shrink:0;align-self:center}
+/* settings */
+.slist{padding:10px;display:flex;flex-direction:column;gap:12px}
+.ssec{background:var(--sur);border:1px solid var(--brd);border-radius:12px;overflow:hidden}
+.ssec-hdr{padding:10px 14px;font-size:13px;font-weight:700;
+  border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between}
+.srow{padding:9px 14px;border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;cursor:pointer}
+.srow:last-child{border-bottom:none}
+.srow-l{flex:1;min-width:0}
+.srow-name{font-weight:600;font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.srow-sub{font-size:10px;color:var(--mut);margin-top:1px}
+.sbadge{font-size:10px;padding:2px 7px;border-radius:20px;white-space:nowrap;margin-left:8px;flex-shrink:0}
+.bq{background:rgba(88,101,242,.18);color:var(--acc)}
+.bs{background:rgba(67,160,71,.15);color:var(--grn)}
+.bh{background:rgba(249,168,37,.18);color:var(--yel)}
+.be{background:rgba(94,234,212,.18);color:var(--acc2)}
+/* theme grid */
+.tgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:14px}
+.tswatch{height:36px;border-radius:10px;cursor:pointer;border:2px solid transparent}
+.tswatch.on{border-color:var(--txt)}
+.tlabel{font-size:10px;color:var(--mut);text-align:center;margin-top:4px}
+/* sheet */
+.sh-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;
+  display:flex;align-items:flex-end;justify-content:center}
+.sh{background:var(--sur);border-radius:16px 16px 0 0;width:100%;max-width:600px;
+  padding:14px 14px;padding-bottom:max(36px,env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;gap:8px}
+.sh-title{font-size:12px;color:var(--mut);text-align:center;margin-bottom:4px}
+.sh-btn{background:var(--sur2);border:none;color:var(--txt);border-radius:10px;
+  padding:14px;font-size:15px;font-weight:600;cursor:pointer;width:100%}
+.sh-btn.acc{background:var(--acc);color:#fff}
+.sh-cancel{background:none;border:none;color:var(--mut);border-radius:10px;
+  padding:12px;font-size:15px;cursor:pointer;width:100%;text-align:center}
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;
+  display:flex;align-items:flex-end;justify-content:center}
+.ov.mid{align-items:center}
+.modal{background:var(--sur);border-radius:18px 18px 0 0;width:100%;max-width:600px;
+  max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:18px 14px 32px;padding-bottom:max(48px,calc(env(safe-area-inset-bottom)+32px))}
+.ov.mid .modal{border-radius:16px;margin:12px;max-height:90vh;
+  padding-bottom:32px}
+.drag{width:36px;height:4px;background:var(--brd);border-radius:2px;margin:0 auto 14px}
 .modal h2{font-size:17px;font-weight:700;margin-bottom:14px}
-.detail-sec{margin-bottom:14px}
-.dl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.dv{font-size:14px}
-.dv a{color:var(--accent2);text-decoration:none}
-.arow{display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:7px 10px}
-.arow .assign-check{width:18px;height:18px}
-.ar-i{flex:1;min-width:0}
-.ar-n{font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.ar-d{font-size:10px;color:var(--muted)}
-.modal-assign-list{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+.dsec{margin-bottom:14px}
+.dlbl{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.dval{font-size:14px}
+.dval a{color:var(--acc2);text-decoration:none}
+.arow{display:flex;align-items:center;gap:8px;background:var(--sur2);border-radius:8px;padding:7px 10px}
+.arow-chk{width:18px;height:18px;border-radius:50%;border:2px solid var(--brd);
+  cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.arow-chk.done{background:var(--grn);border-color:var(--grn)}
+.arow-chk.done::after{content:'✓';font-size:9px;color:#fff;font-weight:900}
+.arow-i{flex:1;min-width:0}
+.arow-n{font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.arow-d{font-size:10px;color:var(--mut)}
+.arows{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+/* form */
 .fg{margin-bottom:12px}
-.fg label{font-size:11px;color:var(--muted);margin-bottom:4px;display:block}
-.fg input,.fg select,.fg textarea{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 11px;font-size:14px;outline:none;-webkit-appearance:none;font-family:inherit}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent)}
+.fg label{font-size:11px;color:var(--mut);margin-bottom:4px;display:block}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:var(--sur2);border:1px solid var(--brd);color:var(--txt);
+  border-radius:8px;padding:9px 11px;font-size:14px;outline:none;
+  -webkit-appearance:none;font-family:inherit}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--acc)}
 .fg textarea{resize:vertical;min-height:64px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{padding:11px;border-radius:10px;border:none;font-size:14px;font-weight:600;cursor:pointer;width:100%;transition:opacity .2s}
+.btn{padding:11px;border-radius:10px;border:none;font-size:14px;font-weight:600;
+  cursor:pointer;width:100%;transition:opacity .2s}
 .btn:active{opacity:.75}
-.btn-p{background:var(--accent);color:#fff}
-.btn-d{background:var(--danger);color:#fff}
-.btn-s{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-p{background:var(--acc);color:#fff}
+.btn-d{background:var(--red);color:#fff}
+.btn-s{background:var(--sur2);color:var(--txt);border:1px solid var(--brd)}
 .btn-row{display:flex;gap:8px;margin-top:14px}
 .sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .sec-hdr span{font-size:13px;font-weight:600}
-.add-sm{background:var(--surface2);border:1px solid var(--border);color:var(--accent);border-radius:6px;padding:3px 9px;font-size:12px;cursor:pointer}
-.empty{text-align:center;padding:36px 20px;color:var(--muted)}
-.empty p{font-size:13px;margin-top:6px}
-.warn-box{background:rgba(249,168,37,.1);border:1px solid rgba(249,168,37,.3);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--warning);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
-.color-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.cswatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:3px solid transparent}
-.cswatch.sel{border-color:var(--text)}
+.add-sm{background:var(--sur2);border:1px solid var(--brd);color:var(--acc);
+  border-radius:6px;padding:3px 9px;font-size:12px;cursor:pointer}
+.empty{text-align:center;padding:36px 20px;color:var(--mut);font-size:13px}
+.warnbox{background:rgba(249,168,37,.1);border:1px solid rgba(249,168,37,.3);
+  border-radius:8px;padding:8px 10px;font-size:12px;color:var(--yel);
+  margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.crow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.csw{width:26px;height:26px;border-radius:50%;cursor:pointer;border:3px solid transparent}
+.csw.on{border-color:var(--txt)}
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>Timetable</h1>
-  <div class="icon-btn" onclick="openAddAssign()">+ 課題</div>
+
+<div class="hdr">
+  <span class="hdr-title">Timetable</span>
+  <button class="hdr-btn" onclick="UI.openAddAssign()">+ 課題</button>
 </div>
 <div class="nav">
-  <div class="nav-tab active" id="tab-cal" onclick="switchTab('cal')">カレンダー</div>
-  <div class="nav-tab" id="tab-assign" onclick="switchTab('assign')">課題</div>
-  <div class="nav-tab" id="tab-settings" onclick="switchTab('settings')">設定</div>
+  <div class="nav-tab on" id="tab-cal" onclick="UI.tab('cal')">カレンダー</div>
+  <div class="nav-tab" id="tab-assign" onclick="UI.tab('assign')">課題</div>
+  <div class="nav-tab" id="tab-settings" onclick="UI.tab('settings')">設定</div>
 </div>
 
-<div id="view-cal" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+<!-- Cal view -->
+<div id="vcal" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
   <div id="banners" class="banners" style="display:none"></div>
-  <div class="week-nav">
-    <button class="wnav-btn" onclick="changeWeek(-1)">‹</button>
-    <span class="week-nav-label" id="week-label"></span>
-    <button class="wnav-btn" onclick="changeWeek(1)">›</button>
+  <div class="wnav">
+    <button class="wnav-btn" onclick="UI.weekShift(-1)">‹</button>
+    <span class="wnav-lbl" id="wlbl"></span>
+    <button class="wnav-btn" onclick="UI.weekShift(1)">›</button>
   </div>
   <div class="cal-outer" id="cal-outer">
     <div class="cal" id="cal-grid"></div>
   </div>
 </div>
 
-<div id="view-assign" class="view" style="display:none">
-  <div id="assign-list" class="list-wrap"></div>
+<!-- Assign view -->
+<div id="vassign" class="view" style="display:none">
+  <div id="assign-list" class="alist"></div>
 </div>
-<div id="view-settings" class="view" style="display:none">
-  <div class="settings-wrap">
-    <div class="s-section">
-      <div class="s-sec-hdr"><span>テーマ</span></div>
-      <div class="theme-grid" id="theme-grid"></div>
+
+<!-- Settings view -->
+<div id="vsettings" class="view" style="display:none">
+  <div class="slist">
+    <div class="ssec">
+      <div class="ssec-hdr">テーマ</div>
+      <div class="tgrid" id="theme-grid"></div>
     </div>
-    <div class="s-section">
-      <div class="s-sec-hdr"><span>学期・休業期間</span><button class="add-sm" onclick="openPeriodForm()">+ 追加</button></div>
+    <div class="ssec">
+      <div class="ssec-hdr"><span>学期・休業期間</span><button class="add-sm" onclick="UI.openPeriod()">+ 追加</button></div>
       <div id="period-list"></div>
     </div>
-    <div class="s-section">
-      <div class="s-sec-hdr"><span>クォーター</span><button class="add-sm" onclick="openQuarterForm()">+ 追加</button></div>
+    <div class="ssec">
+      <div class="ssec-hdr"><span>クォーター</span><button class="add-sm" onclick="UI.openQuarter()">+ 追加</button></div>
       <div id="quarter-list"></div>
     </div>
-    <div class="s-section">
-      <div class="s-sec-hdr"><span>行事</span><button class="add-sm" onclick="openEventForm()">+ 追加</button></div>
+    <div class="ssec">
+      <div class="ssec-hdr"><span>行事</span><button class="add-sm" onclick="UI.openEvent()">+ 追加</button></div>
       <div id="event-list"></div>
     </div>
   </div>
 </div>
 
 <!-- Cell sheet -->
-<div class="sheet-overlay" id="cell-sheet" style="display:none" onclick="closeCellSheet(event)">
-  <div class="sheet">
-    <div class="sheet-title" id="cell-sheet-title"></div>
-    <button class="sheet-btn accent" id="cell-sheet-class">授業を追加</button>
-    <button class="sheet-btn" id="cell-sheet-memo">メモを追加</button>
-    <button class="sheet-cancel" onclick="closeCellSheet()">キャンセル</button>
+<div class="sh-ov" id="cell-sheet" style="display:none">
+  <div class="sh">
+    <div class="sh-title" id="cs-title"></div>
+    <button class="sh-btn acc" id="cs-class-btn">授業を追加</button>
+    <button class="sh-btn" id="cs-memo-btn">メモを追加</button>
+    <button class="sh-cancel" onclick="UI.closeSheet()">キャンセル</button>
   </div>
 </div>
-<!-- Detail -->
-<div class="overlay" id="detail-overlay" style="display:none" onclick="closeOverlay('detail-overlay',event)">
-  <div class="modal"><div class="modal-drag"></div><div id="detail-content"></div></div>
-</div>
-<!-- Class form -->
-<div class="overlay center" id="class-overlay" style="display:none" onclick="closeOverlay('class-overlay',event)">
+
+<!-- Class form modal -->
+<div class="ov mid" id="m-class" style="display:none">
   <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="cf-title">時間割を追加</h2>
-    <div class="fg"><label>クォーター</label><select id="f-quarter"></select></div>
-    <div class="fg"><label>時間割名 *</label><input id="f-name" type="text" placeholder="例: 線形代数学"></div>
-    <div class="fg"><label>時間割番号</label><input id="f-code" type="text" placeholder="例: MA201"></div>
+    <div class="drag"></div>
+    <h2 id="mclass-title">時間割を追加</h2>
+    <div class="fg"><label>クォーター</label><select id="fc-quarter"></select></div>
+    <div class="fg"><label>時間割名 *</label><input id="fc-name" type="text" placeholder="例: 線形代数学"></div>
+    <div class="fg"><label>時間割番号</label><input id="fc-code" type="text" placeholder="例: MA201"></div>
     <div class="fg"><label>単発授業</label>
-      <select id="f-single" onchange="toggleSingleFields()">
+      <select id="fc-single" onchange="UI.toggleSingle()">
         <option value="0">通常（毎週繰り返し）</option>
         <option value="1">単発（特定の1日のみ）</option>
       </select>
     </div>
-    <div id="single-date-wrap" class="fg" style="display:none"><label>実施日 *</label><input id="f-single-date" type="date"></div>
-    <div id="regular-wrap">
+    <div id="fc-sdate-wrap" class="fg" style="display:none"><label>実施日 *</label><input id="fc-sdate" type="date"></div>
+    <div id="fc-reg-wrap">
       <div class="frow">
         <div class="fg"><label>曜日 *</label>
-          <select id="f-day">
+          <select id="fc-day">
             <option value="0">月</option><option value="1">火</option><option value="2">水</option>
             <option value="3">木</option><option value="4">金</option><option value="5">土</option>
           </select>
         </div>
         <div class="fg"><label>時限 *</label>
-          <select id="f-period">
+          <select id="fc-period">
             <option value="0">1限 (8:30〜10:00)</option><option value="1">2限 (10:20〜11:50)</option>
             <option value="2">3限 (12:40〜14:10)</option><option value="3">4限 (14:30〜16:00)</option>
             <option value="4">5限 (16:20〜17:50)</option>
@@ -244,698 +304,938 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'Helvetica
         </div>
       </div>
     </div>
-    <div class="fg"><label>教室</label><input id="f-room" type="text" placeholder="例: 2号館 301"></div>
-    <div class="fg"><label>担当教員名</label><input id="f-teacher" type="text" placeholder="例: 山田 太郎"></div>
-    <div class="fg"><label>教員メールアドレス</label><input id="f-email" type="email" placeholder="例: yamada@univ.ac.jp"></div>
-    <div class="fg"><label>オフィス</label><input id="f-office" type="text" placeholder="例: 3号館 201"></div>
-    <div class="fg"><label>メモ</label><textarea id="f-note" placeholder="オフィスアワーなど"></textarea></div>
-    <div class="fg"><label>色</label><div class="color-row" id="color-picker"></div></div>
+    <div class="fg"><label>教室</label><input id="fc-room" type="text" placeholder="例: 2号館 301"></div>
+    <div class="fg"><label>担当教員名</label><input id="fc-teacher" type="text"></div>
+    <div class="fg"><label>教員メールアドレス</label><input id="fc-email" type="email"></div>
+    <div class="fg"><label>オフィス</label><input id="fc-office" type="text"></div>
+    <div class="fg"><label>メモ</label><textarea id="fc-note" placeholder="オフィスアワーなど"></textarea></div>
+    <div class="fg"><label>色</label><div class="crow" id="color-row"></div></div>
     <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('class-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="saveClass()">保存</button>
+      <button class="btn btn-s" onclick="event.stopPropagation();UI.closeModal('m-class')">キャンセル</button>
+      <button class="btn btn-p" onclick="event.stopPropagation();UI.saveClass()">保存</button>
     </div>
     <div id="del-class-wrap" style="margin-top:8px;display:none">
-      <button class="btn btn-d" id="del-class-btn">この時間割を削除</button>
+      <button class="btn btn-d" id="del-class-btn" type="button"
+        style="-webkit-appearance:none;position:relative;z-index:9999;touch-action:manipulation"
+        ontouchend="event.preventDefault();event.stopPropagation();doDeleteClass(this.dataset.id)"
+        onclick="event.stopPropagation();doDeleteClass(this.dataset.id)">この時間割を削除</button>
     </div>
   </div>
 </div>
-<!-- Sched -->
-<div class="overlay center" id="sched-overlay" style="display:none" onclick="closeOverlay('sched-overlay',event)">
+
+<!-- Assign form modal -->
+<div class="ov mid" id="m-assign" style="display:none">
   <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="sched-title">スケジュール変更</h2>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:12px">この週だけ適用されます。</p>
-    <div class="fg"><label>変更の種類</label>
-      <select id="s-type" onchange="toggleSchedFields()"><option value="cancel">休講</option><option value="move">別の日・時限に移動</option></select>
+    <div class="drag"></div>
+    <h2 id="massign-title">課題を追加</h2>
+    <div class="fg"><label>課題名 *</label><input id="fa-name" type="text" placeholder="例: レポート第2回"></div>
+    <div class="fg"><label>時間割</label><select id="fa-class"></select></div>
+    <div class="fg"><label>期限</label><input id="fa-due" type="date"></div>
+    <div class="fg"><label>メモ</label><textarea id="fa-note"></textarea></div>
+    <div class="btn-row">
+      <button class="btn btn-s" onclick="UI.closeModal('m-assign')">キャンセル</button>
+      <button class="btn btn-p" onclick="UI.saveAssign()">保存</button>
     </div>
-    <div id="s-move" style="display:none">
+    <div id="del-assign-wrap" style="margin-top:8px;display:none">
+      <button class="btn btn-d" id="del-assign-btn" type="button" onclick="doDeleteAssign()">課題を削除</button>
+    </div>
+  </div>
+</div>
+
+<!-- Detail modal -->
+<div class="ov" id="m-detail" style="display:none">
+  <div class="modal" style="max-height:80vh;overflow-y:auto"><div class="drag"></div><div id="detail-body"></div></div>
+</div>
+
+<!-- Assign detail modal -->
+<div class="ov mid" id="m-adetail" style="display:none">
+  <div class="modal"><div class="drag"></div><div id="adetail-body"></div></div>
+</div>
+
+<!-- Sched modal -->
+<div class="ov mid" id="m-sched" style="display:none">
+  <div class="modal">
+    <div class="drag"></div>
+    <h2 id="msched-title">スケジュール変更</h2>
+    <p style="font-size:12px;color:var(--mut);margin-bottom:12px">この週だけ適用されます。</p>
+    <div class="fg"><label>変更の種類</label>
+      <select id="fs-type" onchange="UI.toggleSched()">
+        <option value="cancel">休講</option><option value="move">別の日・時限に移動</option>
+      </select>
+    </div>
+    <div id="fs-move" style="display:none">
       <div class="frow">
         <div class="fg"><label>移動先の曜日</label>
-          <select id="s-day">
+          <select id="fs-day">
             <option value="0">月</option><option value="1">火</option><option value="2">水</option>
             <option value="3">木</option><option value="4">金</option><option value="5">土</option>
           </select>
         </div>
         <div class="fg"><label>移動先の時限</label>
-          <select id="s-period"><option value="0">1限</option><option value="1">2限</option><option value="2">3限</option><option value="3">4限</option><option value="4">5限</option></select>
+          <select id="fs-period">
+            <option value="0">1限</option><option value="1">2限</option><option value="2">3限</option>
+            <option value="3">4限</option><option value="4">5限</option>
+          </select>
         </div>
       </div>
     </div>
-    <div class="fg"><label>メモ</label><input id="s-note" type="text" placeholder="例: A棟で実施"></div>
+    <div class="fg"><label>メモ</label><input id="fs-note" type="text"></div>
     <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('sched-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="saveSchedChange()">保存</button>
+      <button class="btn btn-s" onclick="UI.closeModal('m-sched')">キャンセル</button>
+      <button class="btn btn-p" onclick="UI.saveSched()">保存</button>
     </div>
   </div>
 </div>
-<!-- Assign form -->
-<div class="overlay center" id="assign-overlay" style="display:none" onclick="closeOverlay('assign-overlay',event)">
+
+<!-- Memo modal -->
+<div class="ov mid" id="m-memo" style="display:none">
   <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="af-title">課題を追加</h2>
-    <div class="fg"><label>課題名 *</label><input id="a-name" type="text" placeholder="例: レポート第2回"></div>
-    <div class="fg"><label>時間割</label><select id="a-class"></select></div>
-    <div class="fg"><label>期限</label><input id="a-due" type="date"></div>
-    <div class="fg"><label>メモ</label><textarea id="a-note" placeholder="詳細・提出方法など"></textarea></div>
+    <div class="drag"></div>
+    <h2 id="mmemo-title">メモ</h2>
+    <div class="fg"><label>メモ内容</label><textarea id="fm-text" style="min-height:100px"></textarea></div>
     <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('assign-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="saveAssign()">保存</button>
-    </div>
-    <div id="del-assign-wrap" style="margin-top:8px;display:none">
-      <button class="btn btn-d" id="del-assign-btn">課題を削除</button>
-    </div>
-  </div>
-</div>
-<!-- Memo form -->
-<div class="overlay center" id="memo-overlay" style="display:none" onclick="closeOverlay('memo-overlay',event)">
-  <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="memo-title">メモ</h2>
-    <div class="fg"><label>メモ内容</label><textarea id="memo-text" placeholder="自習・バイトなど" style="min-height:100px"></textarea></div>
-    <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('memo-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="saveMemo()">保存</button>
+      <button class="btn btn-s" onclick="UI.closeModal('m-memo')">キャンセル</button>
+      <button class="btn btn-p" onclick="UI.saveMemo()">保存</button>
     </div>
     <div id="del-memo-wrap" style="margin-top:8px;display:none">
-      <button class="btn btn-d" id="del-memo-btn">メモを削除</button>
+      <button class="btn btn-d" id="del-memo-btn" type="button">メモを削除</button>
     </div>
   </div>
 </div>
-<!-- Period -->
-<div class="overlay center" id="period-overlay" style="display:none" onclick="closeOverlay('period-overlay',event)">
+
+<!-- Period modal -->
+<div class="ov mid" id="m-period" style="display:none">
   <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="pf-title">学期・休業期間</h2>
-    <div class="fg"><label>名称 *</label><input id="p-name" type="text" placeholder="例: 前学期 / 夏季休業"></div>
-    <div class="fg"><label>種別</label><select id="p-type"><option value="semester">学期</option><option value="holiday">休業・休暇</option></select></div>
+    <div class="drag"></div>
+    <h2 id="mperiod-title">学期・休業期間</h2>
+    <div class="fg"><label>名称 *</label><input id="fp-name" type="text" placeholder="例: 前学期 / 夏季休業"></div>
+    <div class="fg"><label>種別</label><select id="fp-type"><option value="semester">学期</option><option value="holiday">休業・休暇</option></select></div>
     <div class="frow">
-      <div class="fg"><label>開始日 *</label><input id="p-start" type="date"></div>
-      <div class="fg"><label>終了日 *</label><input id="p-end" type="date"></div>
+      <div class="fg"><label>開始日 *</label><input id="fp-start" type="date"></div>
+      <div class="fg"><label>終了日 *</label><input id="fp-end" type="date"></div>
     </div>
     <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('period-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="savePeriod()">保存</button>
+      <button class="btn btn-s" onclick="UI.closeModal('m-period')">キャンセル</button>
+      <button class="btn btn-p" onclick="UI.savePeriod()">保存</button>
     </div>
-    <div id="del-period-wrap" style="margin-top:8px;display:none"><button class="btn btn-d" id="del-period-btn">削除</button></div>
+    <div id="del-period-wrap" style="margin-top:8px;display:none">
+      <button class="btn btn-d" id="del-period-btn" type="button">削除</button>
+    </div>
   </div>
 </div>
-<!-- Quarter -->
-<div class="overlay center" id="quarter-overlay" style="display:none" onclick="closeOverlay('quarter-overlay',event)">
+
+<!-- Quarter modal -->
+<div class="ov mid" id="m-quarter" style="display:none">
   <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="qf-title">クォーター</h2>
-    <div class="fg"><label>クォーター名 *</label><input id="q-name" type="text" placeholder="例: Q1 / 春クォーター"></div>
+    <div class="drag"></div>
+    <h2 id="mquarter-title">クォーター</h2>
+    <div class="fg"><label>クォーター名 *</label><input id="fq-name" type="text" placeholder="例: Q1"></div>
     <div class="frow">
-      <div class="fg"><label>開始日 *</label><input id="q-start" type="date"></div>
-      <div class="fg"><label>終了日 *</label><input id="q-end" type="date"></div>
+      <div class="fg"><label>開始日 *</label><input id="fq-start" type="date"></div>
+      <div class="fg"><label>終了日 *</label><input id="fq-end" type="date"></div>
     </div>
     <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('quarter-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="saveQuarter()">保存</button>
+      <button class="btn btn-s" onclick="UI.closeModal('m-quarter')">キャンセル</button>
+      <button class="btn btn-p" onclick="UI.saveQuarter()">保存</button>
     </div>
-    <div id="del-quarter-wrap" style="margin-top:8px;display:none"><button class="btn btn-d" id="del-quarter-btn">削除</button></div>
+    <div id="del-quarter-wrap" style="margin-top:8px;display:none">
+      <button class="btn btn-d" id="del-quarter-btn" type="button">削除</button>
+    </div>
   </div>
 </div>
-<!-- Event -->
-<div class="overlay center" id="event-overlay" style="display:none" onclick="closeOverlay('event-overlay',event)">
+
+<!-- Event modal -->
+<div class="ov mid" id="m-event" style="display:none">
   <div class="modal">
-    <div class="modal-drag"></div>
-    <h2 id="ef-title">行事</h2>
-    <div class="fg"><label>行事名 *</label><input id="e-name" type="text" placeholder="例: 学園祭"></div>
+    <div class="drag"></div>
+    <h2 id="mevent-title">行事</h2>
+    <div class="fg"><label>行事名 *</label><input id="fe-name" type="text"></div>
     <div class="frow">
-      <div class="fg"><label>開始日 *</label><input id="e-start" type="date"></div>
-      <div class="fg"><label>終了日（複数日の場合）</label><input id="e-end" type="date"></div>
+      <div class="fg"><label>開始日 *</label><input id="fe-start" type="date"></div>
+      <div class="fg"><label>終了日（複数日）</label><input id="fe-end" type="date"></div>
     </div>
-    <div class="fg"><label>メモ</label><input id="e-note" type="text" placeholder="場所など"></div>
+    <div class="fg"><label>メモ</label><input id="fe-note" type="text"></div>
     <div class="btn-row">
-      <button class="btn btn-s" onclick="closeOverlay('event-overlay')">キャンセル</button>
-      <button class="btn btn-p" onclick="saveEvent()">保存</button>
+      <button class="btn btn-s" onclick="UI.closeModal('m-event')">キャンセル</button>
+      <button class="btn btn-p" onclick="UI.saveEvent()">保存</button>
     </div>
-    <div id="del-event-wrap" style="margin-top:8px;display:none"><button class="btn btn-d" id="del-event-btn">削除</button></div>
+    <div id="del-event-wrap" style="margin-top:8px;display:none">
+      <button class="btn btn-d" id="del-event-btn" type="button">削除</button>
+    </div>
   </div>
-</div>
-<!-- Assign detail -->
-<div class="overlay center" id="adetail-overlay" style="display:none" onclick="closeOverlay('adetail-overlay',event)">
-  <div class="modal"><div class="modal-drag"></div><div id="adetail-content"></div></div>
 </div>
 
 <script>
-// ─── 定数 ───────────────────────────────────────────
-// d=0:月, 1:火, 2:水, 3:木, 4:金, 5:土  ※日曜は表示しない
-const DAY_LABELS = ['月','火','水','木','金','土']; // インデックス = d
-const PERIOD_LABELS = ['1限','2限','3限','4限','5限'];
-const PERIOD_TIMES  = ['8:30\n〜10:00','10:20\n〜11:50','12:40\n〜14:10','14:30\n〜16:00','16:20\n〜17:50'];
-const CCOLORS = ['#7c6af7','#5eead4','#fbbf24','#f87171','#4ade80','#fb923c','#e879f9','#38bdf8'];
-const THEMES = [
-  {id:'minimal',  label:'Minimal', bg:'#fafafa', accent:'#222222'},
-  {id:'white',    label:'White',   bg:'#ffffff', accent:'#5865f2'},
-  {id:'cream',    label:'Cream',   bg:'#fdfaf5', accent:'#c07c3a'},
-  {id:'cool',     label:'Cool',    bg:'#f5f7fb', accent:'#2563eb'},
-  {id:'light',    label:'Light',   bg:'#f2f3f5', accent:'#5865f2'},
-  {id:'dark',     label:'Dark',    bg:'#313338', accent:'#5865f2'},
-  {id:'darker',   label:'Darker',  bg:'#1e1f22', accent:'#5865f2'},
-  {id:'midnight', label:'Midnight',bg:'#0d0d0f', accent:'#5865f2'},
-  {id:'classic',  label:'Classic', bg:'#23272a', accent:'#7289da'},
-  {id:'canary',   label:'Canary',  bg:'#36393f', accent:'#7289da'},
-];
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const DB_KEY = 'tt_v7';
+let D = {classes:[], assignments:[], scheds:[], quarters:[], periods:[], events:[], memos:[], theme:'minimal'};
 
-// ─── 状態 ───────────────────────────────────────────
-let S = {classes:[],assignments:[],schedChanges:[],quarters:[],periods:[],events:[],memos:[],theme:'minimal'};
-let editingClassId=null, editingAssignId=null, editingPeriodId=null, editingQuarterId=null, editingEventId=null, schedClassId=null;
-let memoDay=null, memoPeriod=null, memoWeek=null;
-let weekOffset=0, selectedColor=0;
-
-// ─── ストレージ ─────────────────────────────────────
-function load(){try{const d=localStorage.getItem('univ_v6');if(d){const p=JSON.parse(d);S={...S,...p};}}catch(e){}}
-function save(){localStorage.setItem('univ_v6',JSON.stringify(S));}
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
-
-// ─── 日付ユーティリティ ─────────────────────────────
-// YYYY-MM-DD 文字列 → その地域の午前0時のDateオブジェクト（nullにならない）
-function toDate(s){return new Date(s+'T00:00:00');}
-// Date → YYYY-MM-DD（タイムゾーンに依存しない）
-function toStr(d){
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
-  return `${y}-${m}-${day}`;
+function dbLoad(){
+  try{ const s=localStorage.getItem(DB_KEY); if(s) D={...D,...JSON.parse(s)}; }catch(e){}
 }
-// YYYY-MM-DD → M/D 表示
-function fmtDate(s){if(!s)return'';const d=toDate(s);return`${d.getMonth()+1}/${d.getDate()}`;}
+function dbSave(){ localStorage.setItem(DB_KEY, JSON.stringify(D)); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
 
-function getMonday(offset){
-  const now = new Date();
-  now.setHours(0,0,0,0);
-  const dow = now.getDay(); // 0=日,1=月,...,6=土
-  // 日曜(0)は翌月曜扱い → diff=+1
-  // 月曜(1)→0, 火曜(2)→-1, ..., 土曜(6)→-5
-  const diff = (dow === 0) ? 1 : 1 - dow;
-  now.setDate(now.getDate() + diff + offset * 7);
+// ═══════════════════════════════════════════════
+// DATE UTILS
+// ═══════════════════════════════════════════════
+const DAYS  = ['月','火','水','木','金','土'];
+const PLBLS = ['1限','2限','3限','4限','5限'];
+const PTIMES= ['8:30\n〜10:00','10:20\n〜11:50','12:40\n〜14:10','14:30\n〜16:00','16:20\n〜17:50'];
+const COLORS= ['#7c6af7','#5eead4','#fbbf24','#f87171','#4ade80','#fb923c','#e879f9','#38bdf8'];
+
+// ローカル日付をYYYY-MM-DD文字列に（タイムゾーン安全）
+function dstr(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+// YYYY-MM-DD → ローカルDateオブジェクト
+function dparse(s){ return new Date(s+'T00:00:00'); }
+// M/D表示
+function dfmt(s){ if(!s)return''; const d=dparse(s); return `${d.getMonth()+1}/${d.getDate()}`; }
+
+// 今週の月曜日（offset週ずらし）
+// 日曜=翌月曜の週に属する（大学の授業週は月〜土）
+let weekOffset = 0;
+function getMonday(off){
+  const now=new Date(); now.setHours(0,0,0,0);
+  const dow=now.getDay(); // 0=日,1=月,...,6=土
+  const diff = (dow===0) ? 1 : 1-dow; // 日曜なら+1（翌月曜）、月曜なら0、火曜なら-1…
+  now.setDate(now.getDate()+diff+off*7);
   return now;
 }
+// 月〜土の日付文字列配列（長さ6）
+function getWeekDates(off){
+  const mon=getMonday(off);
+  return Array.from({length:6},(_,i)=>{
+    const d=new Date(mon.getFullYear(), mon.getMonth(), mon.getDate()+i);
+    return dstr(d);
+  });
+}
+function weekKey(off){ return dstr(getMonday(off)); }
 
-// 今週の月〜土の日付文字列配列（長さ6）を返す
-// dates[0]=月, dates[1]=火, ..., dates[5]=土
-function getWeekDates(offset){
-  const mon = getMonday(offset);
-  const arr = [];
-  for(let i=0;i<6;i++){
-    const d = new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + i);
-    arr.push(toStr(d));
-  }
-  return arr;
+// ═══════════════════════════════════════════════
+// BUSINESS LOGIC
+// ═══════════════════════════════════════════════
+
+// 時間割番号が同じ授業の代表ID（番号なし→自分自身）
+function repId(classId){
+  if(!classId) return null;
+  const c=D.classes.find(x=>x.id===classId);
+  if(!c||!c.code||!c.code.trim()) return classId;
+  const group=D.classes.filter(x=>x.code&&x.code.trim()===c.code.trim());
+  group.sort((a,b)=>a.id.localeCompare(b.id));
+  return group[0].id;
 }
 
-function weekKey(offset){return toStr(getMonday(offset));}
+// その授業に紐づく課題（代表IDで検索）
+function classAssigns(cls){
+  const rid=repId(cls.id);
+  return D.assignments.filter(a=>a.classId===rid);
+}
 
-// ─── 期間・行事ヘルパー ─────────────────────────────
-function getPeriodsForDate(ds){return S.periods.filter(p=>p.start<=ds&&ds<=p.end);}
-function getQuartersForDate(ds){return S.quarters.filter(q=>q.start<=ds&&ds<=q.end);}
-function isHoliday(ds){return S.periods.some(p=>p.type==='holiday'&&p.start<=ds&&ds<=p.end);}
-function getEventsForDate(ds){return S.events.filter(e=>e.start<=ds&&ds<=(e.end||e.start));}
-function getActiveQIds(ds){return getQuartersForDate(ds).map(q=>q.id);}
+// その日付が含まれるクォーターID一覧
+function qIdsFor(ds){ return D.quarters.filter(q=>q.start<=ds&&ds<=q.end).map(q=>q.id); }
+// その日が休業期間か
+function isHol(ds){ return D.periods.some(p=>p.type==='holiday'&&p.start<=ds&&ds<=p.end); }
+// その日の行事
+function eventsFor(ds){ return D.events.filter(e=>e.start<=ds&&ds<=(e.end||e.start)); }
+// その週・その日時に表示すべき授業を返す
+function cellClass(d, p, ds, wk, aqIds){
+  const chg=D.scheds.find(s=>s.week===wk&&s.origDay===d&&s.origPeriod===p);
+  if(chg&&chg.type==='cancel') return {cls:null, cancelled:true, note:chg.note};
+  if(chg&&chg.type==='move')   return {cls:null, cancelled:false, changed:false};
+  // 通常授業
+  let cls=D.classes.find(c=>{
+    if(c.isSingle) return c.singleDate===ds&&c.day===d&&c.period===p;
+    return c.day===d&&c.period===p&&(!c.quarterId||aqIds.includes(c.quarterId));
+  });
+  // 移動してきた授業
+  const mv=D.scheds.find(s=>s.week===wk&&s.type==='move'&&s.newDay===d&&s.newPeriod===p);
+  if(mv) cls=D.classes.find(c=>c.day===mv.origDay&&c.period===mv.origPeriod&&(!c.quarterId||aqIds.includes(c.quarterId)));
+  return {cls:cls||null, cancelled:false, changed:!!mv};
+}
 
-// ─── テーマ ─────────────────────────────────────────
+// 期限表示
+function dueFmt(s){
+  const diff=Math.round((dparse(s)-new Date().setHours(0,0,0,0))/86400000);
+  if(diff<0)  return {txt:`${Math.abs(diff)}日超過`, cls:'due-ov'};
+  if(diff===0)return {txt:'今日締切', cls:'due-td'};
+  if(diff===1)return {txt:'明日締切', cls:'due-sn'};
+  if(diff<=3) return {txt:`${dfmt(s)}まで`, cls:'due-sn'};
+  return       {txt:`${dfmt(s)}まで`, cls:'due-ok'};
+}
+
+// ═══════════════════════════════════════════════
+// THEMES
+// ═══════════════════════════════════════════════
+const THEMES=[
+  {id:'minimal', label:'Minimal', bg:'#fafafa', acc:'#222'},
+  {id:'white',   label:'White',   bg:'#ffffff', acc:'#5865f2'},
+  {id:'cream',   label:'Cream',   bg:'#fdfaf5', acc:'#c07c3a'},
+  {id:'cool',    label:'Cool',    bg:'#f5f7fb', acc:'#2563eb'},
+  {id:'light',   label:'Light',   bg:'#f2f3f5', acc:'#5865f2'},
+  {id:'dark',    label:'Dark',    bg:'#313338', acc:'#5865f2'},
+  {id:'darker',  label:'Darker',  bg:'#1e1f22', acc:'#5865f2'},
+  {id:'midnight',label:'Midnight',bg:'#0d0d0f', acc:'#5865f2'},
+  {id:'classic', label:'Classic', bg:'#23272a', acc:'#7289da'},
+  {id:'canary',  label:'Canary',  bg:'#36393f', acc:'#7289da'},
+];
 function applyTheme(id){
-  const t=THEMES.find(x=>x.id===id)||THEMES[0];
-  document.body.className='theme-'+t.id;
-  S.theme=t.id;save();renderThemeGrid();
+  document.body.className='th-'+id;
+  D.theme=id; dbSave(); renderThemeGrid();
 }
 function renderThemeGrid(){
   document.getElementById('theme-grid').innerHTML=THEMES.map(t=>`
     <div style="cursor:pointer" onclick="applyTheme('${t.id}')">
-      <div class="theme-swatch${S.theme===t.id?' sel':''}" style="background:${t.bg};border-color:${S.theme===t.id?'var(--text)':t.accent}"></div>
-      <div class="theme-label">${t.label}</div>
+      <div class="tswatch${D.theme===t.id?' on':''}" style="background:${t.bg};border-color:${D.theme===t.id?'var(--txt)':t.acc}"></div>
+      <div class="tlabel">${t.label}</div>
     </div>`).join('');
 }
 
-// ─── タブ ────────────────────────────────────────────
-function switchTab(t){
-  document.getElementById('view-cal').style.display   = t==='cal'    ? 'flex' : 'none';
-  document.getElementById('view-assign').style.display= t==='assign' ? 'block': 'none';
-  document.getElementById('view-settings').style.display= t==='settings'?'block':'none';
-  ['cal','assign','settings'].forEach(x=>{
-    document.getElementById('tab-'+x).className='nav-tab'+(x===t?' active':'');
-  });
-  if(t==='assign') renderAssignments();
-  if(t==='settings'){renderSettings();renderThemeGrid();}
-}
-function changeWeek(d){weekOffset+=d;renderCalendar();}
+// ═══════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════
+function renderCal(){
+  const dates=getWeekDates(weekOffset);
+  const wk=weekKey(weekOffset);
+  const mon=getMonday(weekOffset);
+  document.getElementById('wlbl').textContent=mon.toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric'})+'〜';
 
-// ─── カレンダー描画 ──────────────────────────────────
-function renderCalendar(){
-  const dates = getWeekDates(weekOffset); // dates[0]=月〜dates[5]=土
-  const wk    = weekKey(weekOffset);
-  const mon   = getMonday(weekOffset);
-
-  // 週ラベル
-  document.getElementById('week-label').textContent =
-    mon.toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric'})+'〜';
-
-  // バナー
-  const bmap = new Map();
+  // Banners
+  const bmap=new Map();
   dates.forEach(ds=>{
-    getQuartersForDate(ds).forEach(q=>{if(!bmap.has('q'+q.id))bmap.set('q'+q.id,{label:q.name,cls:'chip-q'});});
-    getPeriodsForDate(ds).forEach(p=>{if(!bmap.has('p'+p.id))bmap.set('p'+p.id,{label:p.name,cls:p.type==='holiday'?'chip-hol':'chip-sem'});});
+    D.quarters.filter(q=>q.start<=ds&&ds<=q.end).forEach(q=>{ if(!bmap.has('q'+q.id)) bmap.set('q'+q.id,{label:q.name,cls:'chip-q'}); });
+    D.periods.filter(p=>p.start<=ds&&ds<=p.end).forEach(p=>{ if(!bmap.has('p'+p.id)) bmap.set('p'+p.id,{label:p.name,cls:p.type==='holiday'?'chip-h':'chip-s'}); });
   });
-  const banDiv=document.getElementById('banners');
-  if(bmap.size){
-    banDiv.style.display='flex';
-    banDiv.innerHTML=[...bmap.values()].map(b=>`<span class="banner-chip ${b.cls}">${b.label}</span>`).join('');
-  } else banDiv.style.display='none';
+  const bd=document.getElementById('banners');
+  if(bmap.size){ bd.style.display='flex'; bd.innerHTML=[...bmap.values()].map(b=>`<span class="chip ${b.cls}">${b.label}</span>`).join(''); }
+  else bd.style.display='none';
 
-  // グリッド構築
   const grid=document.getElementById('cal-grid');
   grid.innerHTML='';
 
-  // セル高さ計算
+  // 行高さ計算
   const outer=document.getElementById('cal-outer');
-  const HEAD_H=44;
-  const availH=outer.clientHeight-8;
-  const cellH=Math.max(52,Math.floor((availH-HEAD_H-4*3)/5));
-  grid.style.gridTemplateRows=`${HEAD_H}px repeat(5,${cellH}px)`;
+  const HEAD=44;
+  const ch=Math.max(52, Math.floor((outer.clientHeight-8-HEAD-4*3)/5));
+  grid.style.gridTemplateRows=`${HEAD}px repeat(5,${ch}px)`;
   grid.style.gridTemplateColumns='42px repeat(6,1fr)';
 
-  // 今日の日付文字列（YYYY-MM-DD）
-  const todayD = new Date();
-  todayD.setHours(0,0,0,0);
-  const todayStr = toStr(todayD);
+  const todayStr=dstr(new Date());
 
-  // ── ヘッダー行 ──
-  // コーナー（空）
+  // コーナー
   grid.appendChild(document.createElement('div'));
-
-  // d=0(月)〜d=5(土) の曜日ヘッダー
+  // ヘッダー行
   for(let d=0;d<6;d++){
-    const ds=dates[d]; // この列の日付文字列
-    const dt=toDate(ds);
-    const isToday=(ds===todayStr);
-    const hol=isHoliday(ds);
+    const ds=dates[d];
+    const isT=(ds===todayStr);
+    const hol=isHol(ds);
     const h=document.createElement('div');
-    h.className='cal-head'+(hol?' hol-h':'');
-    h.innerHTML=`<div class="cal-head-day">${DAY_LABELS[d]}</div>
-                 <div class="cal-head-date${isToday?' today-circle':''}">${dt.getDate()}</div>`;
+    h.className='cal-hd'+(hol?' hol':'');
+    const dt=dparse(ds);
+    h.innerHTML=`<div class="cal-hd-day">${DAYS[d]}</div><div class="cal-hd-date${isT?' today':''}">${dt.getDate()}</div>`;
     grid.appendChild(h);
   }
 
-  // ── データ行（5限）──
+  // データ行
   for(let p=0;p<5;p++){
-    // 時間ラベル列
-    const tl=document.createElement('div');tl.className='time-col';
-    tl.innerHTML=`<span class="tl-p">${PERIOD_LABELS[p]}</span><span class="tl-t">${PERIOD_TIMES[p]}</span>`;
-    grid.appendChild(tl);
+    const tc=document.createElement('div'); tc.className='tcol';
+    tc.innerHTML=`<span class="tcol-p">${PLBLS[p]}</span><span class="tcol-t">${PTIMES[p]}</span>`;
+    grid.appendChild(tc);
 
-    // d=0(月)〜d=5(土) のセル
     for(let d=0;d<6;d++){
-      const ds=dates[d]; // この列の日付文字列
+      const ds=dates[d];
+      const aqIds=qIdsFor(ds);
+      const {cls,cancelled,changed}=cellClass(d,p,ds,wk,aqIds);
+      const evs=eventsFor(ds);
+      const memo=D.memos.find(m=>m.week===wk&&m.day===d&&m.period===p);
+
       const cell=document.createElement('div');
-      cell.className='cal-cell'+(isHoliday(ds)?' hol-cell':'');
+      cell.className='cell'+(isHol(ds)?' hol':'');
 
-      const aqIds=getActiveQIds(ds);
-
-      // スケジュール変更
-      const change   =S.schedChanges.find(c=>c.week===wk&&c.origDay===d&&c.origPeriod===p);
-      const movedHere=S.schedChanges.find(c=>c.week===wk&&c.type==='move'&&c.newDay===d&&c.newPeriod===p);
-
-      // 表示する授業を決定
-      let cls=null;
-      if(change&&change.type==='cancel'){
-        // 休講：授業なし
-      } else if(change&&change.type==='move'){
-        // 移動で元の場所は空
-      } else {
-        cls=S.classes.find(c=>{
-          if(c.isSingle) return c.singleDate===ds&&c.day===d&&c.period===p;
-          return c.day===d&&c.period===p&&(!c.quarterId||aqIds.includes(c.quarterId));
-        });
-      }
-      if(movedHere){
-        cls=S.classes.find(c=>c.day===movedHere.origDay&&c.period===movedHere.origPeriod
-                            &&(!c.quarterId||aqIds.includes(c.quarterId)));
-      }
-      // 単発授業フォールバック
-      if(!cls){
-        cls=S.classes.find(c=>c.isSingle&&c.singleDate===ds&&c.period===p);
-      }
-
-      const memo=S.memos.find(m=>m.week===wk&&m.day===d&&m.period===p);
-      const evs=getEventsForDate(ds);
-
-      if(cls){
-        const hasUndone=S.assignments.some(a=>a.classId===cls.id&&!a.done);
+      if(cancelled){
+        const b=document.createElement('div'); b.className='cblk';
+        b.style.cssText='background:rgba(229,57,53,.1);border-left:3px solid var(--red)';
+        b.innerHTML=`<div class="cblk-name" style="color:var(--red)">休講</div>`;
+        cell.appendChild(b);
+      } else if(cls){
+        const hasUndone=classAssigns(cls).some(a=>!a.done);
         const ci=cls.colorIdx%8;
-        const blk=document.createElement('div');
-        blk.className='class-block c'+ci;
-        blk.innerHTML=`<div class="cb-name">${cls.name}</div><div class="cb-spacer"></div>`+
-          `<div class="cb-room">${(!!change||!!movedHere)?'[変更] ':''}${cls.room||''}</div>`+
-          (hasUndone?'<div class="cb-badge"></div>':'')+
-          (cls.isSingle?'<div class="cb-single"></div>':'');
-        cell.appendChild(blk);
-        if(evs.length){const ev=document.createElement('div');ev.className='ev-dot';ev.textContent='* '+evs.map(e=>e.name).join(' ');cell.appendChild(ev);}
-        cell.onclick=()=>openDetail(cls.id);
-      } else if(change&&change.type==='cancel'){
-        const blk=document.createElement('div');blk.className='class-block';
-        blk.style.cssText='background:rgba(229,57,53,.1);border-left:3px solid var(--danger)';
-        blk.innerHTML=`<div class="cb-name" style="color:var(--danger)">休講</div><div class="cb-spacer"></div><div class="cb-room">${change.note||''}</div>`;
-        cell.appendChild(blk);
+        const b=document.createElement('div'); b.className='cblk c'+ci;
+        b.innerHTML=`<div class="cblk-name">${cls.name}</div><div class="cblk-sp"></div>`+
+          `<div class="cblk-room">${changed?'[変更] ':''}${cls.room||''}</div>`+
+          (hasUndone?'<div class="cblk-dot"></div>':'');
+        cell.appendChild(b);
+        cell.onclick=()=>UI.openDetail(cls.id);
       } else if(memo){
-        const blk=document.createElement('div');blk.className='memo-block';
-        blk.innerHTML=`<div class="memo-text">${memo.text}</div>`;
-        cell.appendChild(blk);
-        if(evs.length){const ev=document.createElement('div');ev.className='ev-dot';ev.textContent='* '+evs.map(e=>e.name).join(' ');cell.appendChild(ev);}
-        cell.onclick=()=>openMemoForm(d,p,wk,memo);
+        const b=document.createElement('div'); b.className='memo-blk';
+        b.innerHTML=`<div class="memo-txt">${memo.text}</div>`;
+        cell.appendChild(b);
+        cell.onclick=()=>UI.openMemo(d,p,wk);
       } else {
-        if(evs.length){const ev=document.createElement('div');ev.className='ev-dot';ev.textContent='* '+evs.map(e=>e.name).join(' ');cell.appendChild(ev);}
-        cell.onclick=()=>openCellSheet(d,p,ds,wk);
+        cell.onclick=()=>UI.openCellSheet(d,p,ds,wk);
+      }
+
+      if(evs.length){
+        const e=document.createElement('div'); e.className='ev-dot';
+        e.textContent='* '+evs.map(x=>x.name).join(' ');
+        cell.appendChild(e);
       }
       grid.appendChild(cell);
     }
   }
 }
 
-// ─── セルシート ─────────────────────────────────────
-function openCellSheet(day,period,ds,wk){
-  document.getElementById('cell-sheet-title').textContent=`${DAY_LABELS[day]}曜 ${PERIOD_LABELS[period]}`;
-  document.getElementById('cell-sheet-class').onclick=()=>{closeCellSheet();openAddClassAt(day,period,ds);};
-  document.getElementById('cell-sheet-memo').onclick=()=>{closeCellSheet();openMemoForm(day,period,wk,null);};
-  document.getElementById('cell-sheet').style.display='flex';
-}
-function closeCellSheet(e){
-  const sh=document.getElementById('cell-sheet');
-  if(!e||e.target===sh)sh.style.display='none';
-}
-
-// ─── メモ ────────────────────────────────────────────
-function openMemoForm(day,period,wk,existing){
-  memoDay=day;memoPeriod=period;memoWeek=wk;
-  document.getElementById('memo-title').textContent=`${DAY_LABELS[day]}曜 ${PERIOD_LABELS[period]}`;
-  document.getElementById('memo-text').value=existing?existing.text:'';
-  document.getElementById('del-memo-wrap').style.display=existing?'block':'none';
-  if(existing){document.getElementById('del-memo-btn').onclick=()=>{
-    S.memos=S.memos.filter(m=>!(m.week===wk&&m.day===day&&m.period===period));
-    save();closeOverlay('memo-overlay');renderCalendar();
-  };}
-  document.getElementById('memo-overlay').style.display='flex';
-}
-function saveMemo(){
-  const text=document.getElementById('memo-text').value.trim();
-  if(!text){alert('メモを入力してください');return;}
-  S.memos=S.memos.filter(m=>!(m.week===memoWeek&&m.day===memoDay&&m.period===memoPeriod));
-  S.memos.push({week:memoWeek,day:memoDay,period:memoPeriod,text});
-  save();closeOverlay('memo-overlay');renderCalendar();
-}
-
-// ─── 授業詳細 ────────────────────────────────────────
-function openDetail(id){
-  const cls=S.classes.find(c=>c.id===id);if(!cls)return;
-  const wk=weekKey(weekOffset);
-  const ec=S.schedChanges.find(c=>c.week===wk&&c.origDay===cls.day&&c.origPeriod===cls.period);
-  const assigns=S.assignments.filter(a=>a.classId===cls.id);
-  const q=cls.quarterId?S.quarters.find(x=>x.id===cls.quarterId):null;
-  let html=`<h2>${cls.name}</h2>`;
-  if(cls.code) html+=`<div style="margin-bottom:10px"><span class="s-badge bq">${cls.code}</span></div>`;
-  if(q)        html+=`<div style="margin-bottom:10px"><span class="s-badge bs">${q.name}</span></div>`;
-  if(cls.isSingle) html+=`<div style="margin-bottom:10px"><span class="s-badge be">単発 ${fmtDate(cls.singleDate)}</span></div>`;
-  if(ec) html+=`<div class="warn-box">この週は${ec.type==='cancel'?'休講':'時限変更'}が設定されています<button onclick="removeSchedChange('${ec.id}')" style="background:none;border:none;color:var(--danger);cursor:pointer;font-size:12px">削除</button></div>`;
-  if(cls.room)    html+=`<div class="detail-sec"><div class="dl">教室</div><div class="dv">${cls.room}</div></div>`;
-  if(cls.teacher) html+=`<div class="detail-sec"><div class="dl">担当教員</div><div class="dv">${cls.teacher}</div></div>`;
-  if(cls.email)   html+=`<div class="detail-sec"><div class="dl">メールアドレス</div><div class="dv"><a href="mailto:${cls.email}">${cls.email}</a></div></div>`;
-  if(cls.office)  html+=`<div class="detail-sec"><div class="dl">オフィス</div><div class="dv">${cls.office}</div></div>`;
-  if(cls.note)    html+=`<div class="detail-sec"><div class="dl">メモ</div><div class="dv" style="color:var(--muted);font-size:13px">${cls.note}</div></div>`;
-  html+=`<div class="sec-hdr"><span>課題 (${assigns.filter(a=>!a.done).length}件未完了)</span><button class="add-sm" onclick="openAddAssignFor('${cls.id}')">+ 追加</button></div>`;
-  if(!assigns.length){html+=`<p style="color:var(--muted);font-size:12px;text-align:center;padding:10px">課題はありません</p>`;}
-  else{
-    html+=`<div class="modal-assign-list">`;
-    assigns.forEach(a=>{
-      const ds=a.due?formatDue(a.due):'';const dc=a.due?getDueClass(a.due):'';
-      html+=`<div class="arow">
-        <div class="assign-check${a.done?' done':''}" onclick="toggleAssign('${a.id}',true,'${cls.id}')"></div>
-        <div class="ar-i">
-          <div class="ar-n${a.done?' done':''}">${a.name}</div>
-          ${a.due?`<div class="ar-d"><span class="adue ${dc}">${ds}</span></div>`:''}
-        </div>
-        <button onclick="deleteAssign('${a.id}',true,'${cls.id}')" style="color:var(--muted);background:none;border:none;cursor:pointer;font-size:15px;padding:2px 4px">x</button>
-      </div>`;
-    });
-    html+=`</div>`;
-  }
-  html+=`<div class="btn-row" style="margin-top:14px">
-    <button class="btn btn-s" onclick="closeOverlay('detail-overlay')">閉じる</button>
-    ${cls.isSingle?'':
-    `<button class="btn btn-s" onclick="closeOverlay('detail-overlay');openSchedChange('${cls.id}')">変更</button>`}
-    <button class="btn btn-p" onclick="closeOverlay('detail-overlay');openEditClass('${cls.id}')">編集</button>
-  </div>`;
-  document.getElementById('detail-content').innerHTML=html;
-  document.getElementById('detail-overlay').style.display='flex';
-}
-function removeSchedChange(id){S.schedChanges=S.schedChanges.filter(c=>c.id!==id);save();closeOverlay('detail-overlay');renderCalendar();}
-function closeOverlay(id,e){
-  const ov=document.getElementById(id);
-  if(!e||e.target===ov){ov.style.display='none';if(id==='detail-overlay')renderCalendar();}
-}
-
-// ─── 授業フォーム ────────────────────────────────────
-function toggleSingleFields(){
-  const s=+document.getElementById('f-single').value;
-  document.getElementById('single-date-wrap').style.display=s?'block':'none';
-  document.getElementById('regular-wrap').style.display=s?'none':'block';
-}
-function buildColorPicker(sel){
-  const w=document.getElementById('color-picker');w.innerHTML='';
-  CCOLORS.forEach((c,i)=>{const s=document.createElement('div');s.className='cswatch'+(i===sel?' sel':'');s.style.background=c;s.onclick=()=>{selectedColor=i;buildColorPicker(i);};w.appendChild(s);});
-}
-function buildQuarterSelect(selId){
-  const s=document.getElementById('f-quarter');s.innerHTML='<option value="">（クォーターなし）</option>';
-  [...S.quarters].sort((a,b)=>a.start.localeCompare(b.start)).forEach(q=>{
-    const o=document.createElement('option');o.value=q.id;o.textContent=q.name;if(selId&&q.id===selId)o.selected=true;s.appendChild(o);
-  });
-}
-function openAddClassAt(day,period,ds){
-  editingClassId=null;selectedColor=0;
-  document.getElementById('cf-title').textContent='時間割を追加';
-  ['f-name','f-code','f-room','f-teacher','f-email','f-office','f-note'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('f-day').value=day;
-  document.getElementById('f-period').value=period;
-  document.getElementById('f-single').value='0';
-  document.getElementById('f-single-date').value=ds||'';
-  toggleSingleFields();
-  const qIds=ds?getActiveQIds(ds):[];
-  buildQuarterSelect(qIds.length?qIds[0]:null);
-  buildColorPicker(0);
-  document.getElementById('del-class-wrap').style.display='none';
-  document.getElementById('class-overlay').style.display='flex';
-}
-function openEditClass(id){
-  const cls=S.classes.find(c=>c.id===id);if(!cls)return;
-  editingClassId=id;selectedColor=cls.colorIdx%8;
-  document.getElementById('cf-title').textContent='時間割を編集';
-  document.getElementById('f-name').value=cls.name;
-  document.getElementById('f-code').value=cls.code||'';
-  document.getElementById('f-day').value=cls.day;
-  document.getElementById('f-period').value=cls.period;
-  document.getElementById('f-room').value=cls.room||'';
-  document.getElementById('f-teacher').value=cls.teacher||'';
-  document.getElementById('f-email').value=cls.email||'';
-  document.getElementById('f-office').value=cls.office||'';
-  document.getElementById('f-note').value=cls.note||'';
-  document.getElementById('f-single').value=cls.isSingle?'1':'0';
-  document.getElementById('f-single-date').value=cls.singleDate||'';
-  toggleSingleFields();
-  buildQuarterSelect(cls.quarterId||null);
-  buildColorPicker(selectedColor);
-  document.getElementById('del-class-wrap').style.display='block';
-  document.getElementById('del-class-btn').onclick=deleteClass;
-  document.getElementById('class-overlay').style.display='flex';
-}
-function saveClass(){
-  const name=document.getElementById('f-name').value.trim();if(!name){alert('時間割名を入力してください');return;}
-  const isSingle=document.getElementById('f-single').value==='1';
-  const singleDate=document.getElementById('f-single-date').value;
-  if(isSingle&&!singleDate){alert('実施日を入力してください');return;}
-  const day=+document.getElementById('f-day').value;
-  const period=+document.getElementById('f-period').value;
-  const qId=document.getElementById('f-quarter').value||null;
-  if(!isSingle){
-    const conflict=S.classes.find(c=>!c.isSingle&&c.day===day&&c.period===period&&c.id!==editingClassId&&(c.quarterId||null)===qId);
-    if(conflict){alert(`${DAY_LABELS[day]}曜 ${period+1}限には「${conflict.name}」が既にあります`);return;}
-  }
-  const data={name,code:document.getElementById('f-code').value.trim(),day,period,isSingle,
-    singleDate:isSingle?singleDate:null,quarterId:qId,
-    room:document.getElementById('f-room').value,teacher:document.getElementById('f-teacher').value,
-    email:document.getElementById('f-email').value,office:document.getElementById('f-office').value,
-    note:document.getElementById('f-note').value,colorIdx:selectedColor};
-  if(editingClassId){Object.assign(S.classes.find(c=>c.id===editingClassId),data);}
-  else{S.classes.push({id:uid(),...data});}
-  save();closeOverlay('class-overlay');renderCalendar();
-}
-function deleteClass(){
-  if(!confirm('この時間割を削除しますか？（関連課題も削除されます）'))return;
-  const id=editingClassId;
-  S.classes=S.classes.filter(c=>c.id!==id);
-  S.assignments=S.assignments.filter(a=>a.classId!==id);
-  save();closeOverlay('class-overlay');renderCalendar();
-}
-
-// ─── スケジュール変更 ────────────────────────────────
-function openSchedChange(classId){
-  schedClassId=classId;
-  const cls=S.classes.find(c=>c.id===classId);
-  document.getElementById('sched-title').textContent=cls.name+' の変更';
-  document.getElementById('s-type').value='cancel';
-  document.getElementById('s-note').value='';
-  document.getElementById('s-day').value=cls.day;
-  document.getElementById('s-period').value=cls.period;
-  toggleSchedFields();
-  document.getElementById('sched-overlay').style.display='flex';
-}
-function toggleSchedFields(){document.getElementById('s-move').style.display=document.getElementById('s-type').value==='move'?'block':'none';}
-function saveSchedChange(){
-  const cls=S.classes.find(c=>c.id===schedClassId);
-  const type=document.getElementById('s-type').value,wk=weekKey(weekOffset);
-  const entry={id:uid(),week:wk,type,origDay:cls.day,origPeriod:cls.period,note:document.getElementById('s-note').value};
-  if(type==='move'){entry.newDay=+document.getElementById('s-day').value;entry.newPeriod=+document.getElementById('s-period').value;}
-  S.schedChanges.push(entry);save();closeOverlay('sched-overlay');renderCalendar();
-}
-
-// ─── 課題 ────────────────────────────────────────────
-function formatDue(due){
-  const d=toDate(due),t=new Date();t.setHours(0,0,0,0);
-  const diff=Math.round((d-t)/86400000);
-  if(diff<0)return`${Math.abs(diff)}日超過`;if(diff===0)return'今日締切';if(diff===1)return'明日締切';
-  return`${d.getMonth()+1}/${d.getDate()}まで`;
-}
-function getDueClass(due){
-  const d=toDate(due),t=new Date();t.setHours(0,0,0,0);
-  const diff=Math.round((d-t)/86400000);
-  if(diff<0)return'due-over';if(diff===0)return'due-today';if(diff<=3)return'due-soon';return'due-ok';
-}
-function populateClassSelect(sel){
-  const s=document.getElementById('a-class');s.innerHTML='<option value="">（時間割なし）</option>';
-  S.classes.forEach(c=>{const o=document.createElement('option');o.value=c.id;const q=c.quarterId?S.quarters.find(x=>x.id===c.quarterId):null;o.textContent=c.name+(q?` (${q.name})`:'');if(sel&&c.id===sel)o.selected=true;s.appendChild(o);});
-}
-function openAddAssign(){
-  editingAssignId=null;document.getElementById('af-title').textContent='課題を追加';
-  populateClassSelect();['a-name','a-due','a-note'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('del-assign-wrap').style.display='none';
-  document.getElementById('assign-overlay').style.display='flex';
-}
-function openAddAssignFor(cid){closeOverlay('detail-overlay');openAddAssign();populateClassSelect(cid);}
-function openEditAssign(id){
-  const a=S.assignments.find(x=>x.id===id);if(!a)return;
-  editingAssignId=id;document.getElementById('af-title').textContent='課題を編集';
-  populateClassSelect(a.classId);
-  document.getElementById('a-name').value=a.name;document.getElementById('a-due').value=a.due||'';document.getElementById('a-note').value=a.note||'';
-  document.getElementById('del-assign-wrap').style.display='block';
-  document.getElementById('del-assign-btn').onclick=()=>{if(confirm('課題を削除しますか？')){S.assignments=S.assignments.filter(x=>x.id!==id);save();closeOverlay('assign-overlay');renderAssignments();}};
-  document.getElementById('assign-overlay').style.display='flex';
-}
-function saveAssign(){
-  const name=document.getElementById('a-name').value.trim();if(!name){alert('課題名を入力してください');return;}
-  const data={name,classId:document.getElementById('a-class').value||null,due:document.getElementById('a-due').value,note:document.getElementById('a-note').value};
-  if(editingAssignId){Object.assign(S.assignments.find(x=>x.id===editingAssignId),data);}
-  else{S.assignments.push({id:uid(),...data,done:false});}
-  save();closeOverlay('assign-overlay');renderAssignments();
-}
-function toggleAssign(id,fromDetail=false,classId=null){
-  const a=S.assignments.find(x=>x.id===id);if(a)a.done=!a.done;
-  save();if(fromDetail&&classId)openDetail(classId);else{renderAssignments();renderCalendar();}
-}
-function deleteAssign(id,fromDetail=false,classId=null){
-  S.assignments=S.assignments.filter(x=>x.id!==id);
-  save();if(fromDetail&&classId)openDetail(classId);else renderAssignments();
-}
-function openAssignDetail(id){
-  const a=S.assignments.find(x=>x.id===id);if(!a)return;
-  const cls=a.classId?S.classes.find(c=>c.id===a.classId):null;
-  const ds=a.due?formatDue(a.due):'';const dc=a.due?getDueClass(a.due):'';
-  let html=`<h2>${a.name}</h2>`;
-  if(cls) html+=`<div class="detail-sec"><div class="dl">時間割</div><div class="dv">${cls.name}</div></div>`;
-  if(a.due) html+=`<div class="detail-sec"><div class="dl">期限</div><div class="dv"><span class="adue ${dc}">${ds}</span></div></div>`;
-  if(a.note) html+=`<div class="detail-sec"><div class="dl">メモ</div><div class="dv" style="font-size:13px;color:var(--muted);white-space:pre-wrap">${a.note}</div></div>`;
-  html+=`<div class="btn-row"><button class="btn btn-s" onclick="closeOverlay('adetail-overlay')">閉じる</button><button class="btn btn-p" onclick="closeOverlay('adetail-overlay');openEditAssign('${a.id}')">編集</button></div>`;
-  document.getElementById('adetail-content').innerHTML=html;
-  document.getElementById('adetail-overlay').style.display='flex';
-}
-function renderAssignments(){
-  const list=document.getElementById('assign-list');
-  const undone=[...S.assignments].filter(a=>!a.done).sort((a,b)=>!a.due&&!b.due?0:!a.due?1:!b.due?-1:a.due.localeCompare(b.due));
-  const done  =[...S.assignments].filter(a=> a.done).sort((a,b)=>!a.due&&!b.due?0:!a.due?1:!b.due?-1:a.due.localeCompare(b.due));
+function renderAssigns(){
+  const el=document.getElementById('assign-list');
+  const undone=[...D.assignments].filter(a=>!a.done).sort((a,b)=>(!a.due&&!b.due)?0:!a.due?1:!b.due?-1:a.due.localeCompare(b.due));
+  const done  =[...D.assignments].filter(a=> a.done).sort((a,b)=>(!a.due&&!b.due)?0:!a.due?1:!b.due?-1:a.due.localeCompare(b.due));
   const all=[...undone,...done];
-  if(!all.length){list.innerHTML=`<div class="empty"><p>課題はありません<br>「+ 課題」ボタンで追加できます</p></div>`;return;}
-  list.innerHTML=all.map(a=>{
-    const cls=a.classId?S.classes.find(c=>c.id===a.classId):null;
-    const ds=a.due?formatDue(a.due):'';const dc=a.due?getDueClass(a.due):'';
+  if(!all.length){ el.innerHTML=`<div class="empty">課題はありません<br>「+ 課題」ボタンで追加できます</div>`; return; }
+  el.innerHTML=all.map(a=>{
+    const cls=a.classId?D.classes.find(c=>c.id===a.classId):null;
+    const lbl=cls?(cls.code?`${cls.name} (${cls.code})`:cls.name):'科目なし';
     const np=a.note&&a.note.length>30?a.note.slice(0,30)+'...':a.note||'';
-    return`<div class="assign-item" onclick="openAssignDetail('${a.id}')">
-      <div class="assign-check${a.done?' done':''}" onclick="event.stopPropagation();toggleAssign('${a.id}')"></div>
-      <div class="assign-info">
+    const due=a.due?dueFmt(a.due):null;
+    return `<div class="aitem" onclick="UI.openADetail('${a.id}')">
+      <div class="achk${a.done?' done':''}" onclick="event.stopPropagation();UI.toggleAssign('${a.id}')"></div>
+      <div class="ainfo">
         <div class="aname${a.done?' done':''}">${a.name}</div>
-        <div class="ameta">${cls?cls.name:'科目なし'}</div>
-        ${a.due?`<span class="adue ${dc}">${ds}</span>`:''}
-        ${np?`<div class="anote-preview">${np}</div>`:''}
+        <div class="ameta">${lbl}</div>
+        ${due?`<span class="adue ${due.cls}">${due.txt}</span>`:''}
+        ${np?`<div class="anote">${np}</div>`:''}
       </div>
+      <button class="adel" onclick="event.stopPropagation();UI.deleteAssign('${a.id}')">削除</button>
     </div>`;
   }).join('');
 }
 
-// ─── 設定 ────────────────────────────────────────────
 function renderSettings(){
-  const ps=[...S.periods].sort((a,b)=>a.start.localeCompare(b.start));
-  document.getElementById('period-list').innerHTML=ps.length?ps.map(p=>`<div class="s-item" onclick="openPeriodForm('${p.id}')"><div class="s-item-l"><div class="s-item-name">${p.name}</div><div class="s-item-sub">${fmtDate(p.start)} 〜 ${fmtDate(p.end)}</div></div><span class="s-badge ${p.type==='holiday'?'bh':'bs'}">${p.type==='holiday'?'休業':'学期'}</span></div>`).join(''):`<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">未設定</div>`;
-  const qs=[...S.quarters].sort((a,b)=>a.start.localeCompare(b.start));
-  document.getElementById('quarter-list').innerHTML=qs.length?qs.map(q=>`<div class="s-item" onclick="openQuarterForm('${q.id}')"><div class="s-item-l"><div class="s-item-name">${q.name}</div><div class="s-item-sub">${fmtDate(q.start)} 〜 ${fmtDate(q.end)}</div></div><span class="s-badge bq">Q</span></div>`).join(''):`<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">未設定</div>`;
-  const es=[...S.events].sort((a,b)=>a.start.localeCompare(b.start));
-  document.getElementById('event-list').innerHTML=es.length?es.map(e=>`<div class="s-item" onclick="openEventForm('${e.id}')"><div class="s-item-l"><div class="s-item-name">${e.name}</div><div class="s-item-sub">${fmtDate(e.start)}${e.end&&e.end!==e.start?' 〜 '+fmtDate(e.end):''}${e.note?' · '+e.note:''}</div></div><span class="s-badge be">行事</span></div>`).join(''):`<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">未設定</div>`;
-}
-function openPeriodForm(id){
-  editingPeriodId=id||null;const p=id?S.periods.find(x=>x.id===id):null;
-  document.getElementById('pf-title').textContent=p?'学期・休業期間を編集':'学期・休業期間を追加';
-  document.getElementById('p-name').value=p?p.name:'';document.getElementById('p-type').value=p?p.type:'semester';
-  document.getElementById('p-start').value=p?p.start:'';document.getElementById('p-end').value=p?p.end:'';
-  document.getElementById('del-period-wrap').style.display=p?'block':'none';
-  if(p)document.getElementById('del-period-btn').onclick=()=>{S.periods=S.periods.filter(x=>x.id!==id);save();closeOverlay('period-overlay');renderSettings();renderCalendar();};
-  document.getElementById('period-overlay').style.display='flex';
-}
-function savePeriod(){
-  const name=document.getElementById('p-name').value.trim(),start=document.getElementById('p-start').value,end=document.getElementById('p-end').value;
-  if(!name||!start||!end){alert('名称・開始日・終了日を入力してください');return;}
-  const data={name,type:document.getElementById('p-type').value,start,end};
-  if(editingPeriodId){Object.assign(S.periods.find(x=>x.id===editingPeriodId),data);}else{S.periods.push({id:uid(),...data});}
-  save();closeOverlay('period-overlay');renderSettings();renderCalendar();
-}
-function openQuarterForm(id){
-  editingQuarterId=id||null;const q=id?S.quarters.find(x=>x.id===id):null;
-  document.getElementById('qf-title').textContent=q?'クォーターを編集':'クォーターを追加';
-  document.getElementById('q-name').value=q?q.name:'';document.getElementById('q-start').value=q?q.start:'';document.getElementById('q-end').value=q?q.end:'';
-  document.getElementById('del-quarter-wrap').style.display=q?'block':'none';
-  if(q)document.getElementById('del-quarter-btn').onclick=()=>{S.quarters=S.quarters.filter(x=>x.id!==id);save();closeOverlay('quarter-overlay');renderSettings();renderCalendar();};
-  document.getElementById('quarter-overlay').style.display='flex';
-}
-function saveQuarter(){
-  const name=document.getElementById('q-name').value.trim(),start=document.getElementById('q-start').value,end=document.getElementById('q-end').value;
-  if(!name||!start||!end){alert('名称・開始日・終了日を入力してください');return;}
-  if(editingQuarterId){Object.assign(S.quarters.find(x=>x.id===editingQuarterId),{name,start,end});}else{S.quarters.push({id:uid(),name,start,end});}
-  save();closeOverlay('quarter-overlay');renderSettings();renderCalendar();
-}
-function openEventForm(id){
-  editingEventId=id||null;const ev=id?S.events.find(x=>x.id===id):null;
-  document.getElementById('ef-title').textContent=ev?'行事を編集':'行事を追加';
-  document.getElementById('e-name').value=ev?ev.name:'';document.getElementById('e-start').value=ev?ev.start:'';document.getElementById('e-end').value=ev?ev.end||'':'';document.getElementById('e-note').value=ev?ev.note||'':'';
-  document.getElementById('del-event-wrap').style.display=ev?'block':'none';
-  if(ev)document.getElementById('del-event-btn').onclick=()=>{S.events=S.events.filter(x=>x.id!==id);save();closeOverlay('event-overlay');renderSettings();renderCalendar();};
-  document.getElementById('event-overlay').style.display='flex';
-}
-function saveEvent(){
-  const name=document.getElementById('e-name').value.trim(),start=document.getElementById('e-start').value;
-  if(!name||!start){alert('行事名・開始日を入力してください');return;}
-  const end=document.getElementById('e-end').value||start;
-  const data={name,start,end,note:document.getElementById('e-note').value};
-  if(editingEventId){Object.assign(S.events.find(x=>x.id===editingEventId),data);}else{S.events.push({id:uid(),...data});}
-  save();closeOverlay('event-overlay');renderSettings();renderCalendar();
+  const ps=[...D.periods].sort((a,b)=>a.start.localeCompare(b.start));
+  document.getElementById('period-list').innerHTML=ps.length?ps.map(p=>`
+    <div class="srow" onclick="UI.openPeriod('${p.id}')">
+      <div class="srow-l"><div class="srow-name">${p.name}</div><div class="srow-sub">${dfmt(p.start)} 〜 ${dfmt(p.end)}</div></div>
+      <span class="sbadge ${p.type==='holiday'?'bh':'bs'}">${p.type==='holiday'?'休業':'学期'}</span>
+    </div>`).join(''):'<div style="padding:12px;text-align:center;color:var(--mut);font-size:12px">未設定</div>';
+
+  const qs=[...D.quarters].sort((a,b)=>a.start.localeCompare(b.start));
+  document.getElementById('quarter-list').innerHTML=qs.length?qs.map(q=>`
+    <div class="srow" onclick="UI.openQuarter('${q.id}')">
+      <div class="srow-l"><div class="srow-name">${q.name}</div><div class="srow-sub">${dfmt(q.start)} 〜 ${dfmt(q.end)}</div></div>
+      <span class="sbadge bq">Q</span>
+    </div>`).join(''):'<div style="padding:12px;text-align:center;color:var(--mut);font-size:12px">未設定</div>';
+
+  const es=[...D.events].sort((a,b)=>a.start.localeCompare(b.start));
+  document.getElementById('event-list').innerHTML=es.length?es.map(e=>`
+    <div class="srow" onclick="UI.openEvent('${e.id}')">
+      <div class="srow-l"><div class="srow-name">${e.name}</div><div class="srow-sub">${dfmt(e.start)}${e.end&&e.end!==e.start?' 〜 '+dfmt(e.end):''}${e.note?' · '+e.note:''}</div></div>
+      <span class="sbadge be">行事</span>
+    </div>`).join(''):'<div style="padding:12px;text-align:center;color:var(--mut);font-size:12px">未設定</div>';
 }
 
-window.addEventListener('resize',()=>{if(document.getElementById('tab-cal').classList.contains('active'))renderCalendar();});
-load();applyTheme(S.theme||'minimal');renderCalendar();
+// ═══════════════════════════════════════════════
+// UI CONTROLLER
+// ═══════════════════════════════════════════════
+const UI = (()=>{
+  // 編集中のID群
+  let _clsId=null, _assignId=null, _schedId=null;
+  let _memoDay=null, _memoPeriod=null, _memoWeek=null;
+  let _selColor=0;
+
+  // --- タブ ---
+  function tab(t){
+    ['cal','assign','settings'].forEach(x=>{
+      document.getElementById('v'+x).style.display = x===t?(x==='cal'?'flex':'block'):'none';
+      document.getElementById('tab-'+x).className = 'nav-tab'+(x===t?' on':'');
+    });
+    if(t==='assign') renderAssigns();
+    if(t==='settings'){ renderSettings(); renderThemeGrid(); }
+  }
+  function weekShift(d){ weekOffset+=d; renderCal(); }
+
+  // --- モーダル開閉 ---
+  function closeModal(id){
+    document.getElementById(id).style.display='none';
+    if(id==='m-detail') renderCal();
+  }
+  // オーバーレイ背景タップで閉じる（モーダル内部は無視）
+  document.querySelectorAll('.ov').forEach(ov=>{
+    ov.addEventListener('click',function(e){
+      if(e.target===ov) closeModal(ov.id);
+    });
+    // モーダル内のクリックがオーバーレイに伝播しないようにする
+    const modal=ov.querySelector('.modal');
+    if(modal){
+      modal.addEventListener('click',function(e){ e.stopPropagation(); });
+    }
+  });
+  // セルシート背景タップで閉じる
+  document.getElementById('cell-sheet').addEventListener('click',e=>{
+    if(e.target===document.getElementById('cell-sheet')) closeSheet();
+  });
+
+  function closeSheet(){ document.getElementById('cell-sheet').style.display='none'; }
+
+  // --- セルシート ---
+  function openCellSheet(d,p,ds,wk){
+    document.getElementById('cs-title').textContent=`${DAYS[d]}曜 ${PLBLS[p]}`;
+    document.getElementById('cs-class-btn').onclick=()=>{ closeSheet(); openClassForm(d,p,ds); };
+    document.getElementById('cs-memo-btn').onclick=()=>{ closeSheet(); openMemo(d,p,wk); };
+    document.getElementById('cell-sheet').style.display='flex';
+  }
+
+  // --- メモ ---
+  function openMemo(d,p,wk){
+    _memoDay=d; _memoPeriod=p; _memoWeek=wk;
+    const existing=D.memos.find(m=>m.week===wk&&m.day===d&&m.period===p);
+    document.getElementById('mmemo-title').textContent=`${DAYS[d]}曜 ${PLBLS[p]}`;
+    document.getElementById('fm-text').value=existing?existing.text:'';
+    const dw=document.getElementById('del-memo-wrap');
+    dw.style.display=existing?'block':'none';
+    const db=document.getElementById('del-memo-btn');
+    db.onclick=()=>{
+      D.memos=D.memos.filter(m=>!(m.week===wk&&m.day===d&&m.period===p));
+      dbSave(); closeModal('m-memo'); renderCal();
+    };
+    document.getElementById('m-memo').style.display='flex';
+  }
+  function saveMemo(){
+    const txt=document.getElementById('fm-text').value.trim();
+    if(!txt){alert('メモを入力してください');return;}
+    D.memos=D.memos.filter(m=>!(m.week===_memoWeek&&m.day===_memoDay&&m.period===_memoPeriod));
+    D.memos.push({week:_memoWeek,day:_memoDay,period:_memoPeriod,text:txt});
+    dbSave(); closeModal('m-memo'); renderCal();
+  }
+
+  // --- 色ピッカー ---
+  function buildColors(sel){
+    document.getElementById('color-row').innerHTML=COLORS.map((c,i)=>
+      `<div class="csw${i===sel?' on':''}" style="background:${c}" onclick="UI._pickColor(${i})"></div>`
+    ).join('');
+  }
+  function _pickColor(i){ _selColor=i; buildColors(i); }
+
+  // --- クォーターセレクト ---
+  function buildQSelect(selId){
+    const s=document.getElementById('fc-quarter');
+    s.innerHTML='<option value="">（クォーターなし）</option>';
+    [...D.quarters].sort((a,b)=>a.start.localeCompare(b.start)).forEach(q=>{
+      const o=document.createElement('option'); o.value=q.id; o.textContent=q.name;
+      if(selId&&q.id===selId) o.selected=true; s.appendChild(o);
+    });
+  }
+
+  // --- 時間割フォーム ---
+  function toggleSingle(){
+    const s=+document.getElementById('fc-single').value;
+    document.getElementById('fc-sdate-wrap').style.display=s?'block':'none';
+    document.getElementById('fc-reg-wrap').style.display=s?'none':'block';
+  }
+  function openClassForm(day,period,ds){
+    _clsId=null; _selColor=0;
+    document.getElementById('mclass-title').textContent='時間割を追加';
+    ['fc-name','fc-code','fc-room','fc-teacher','fc-email','fc-office','fc-note'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('fc-day').value=day;
+    document.getElementById('fc-period').value=period;
+    document.getElementById('fc-single').value='0';
+    document.getElementById('fc-sdate').value=ds||'';
+    toggleSingle();
+    const aqIds=ds?qIdsFor(ds):[];
+    buildQSelect(aqIds.length?aqIds[0]:null);
+    buildColors(0);
+    document.getElementById('del-class-wrap').style.display='none';
+    document.getElementById('m-class').style.display='flex';
+  }
+  // 削除対象IDをグローバルに保持して確実に参照
+  let _delClsId=null;
+
+  function openEditClass(id){
+    const c=D.classes.find(x=>x.id===id); if(!c) return;
+    _clsId=id; _delClsId=id;
+    window._pendingDeleteClsId = id; // グローバルにセット
+    _selColor=c.colorIdx%8;
+    document.getElementById('mclass-title').textContent='時間割を編集';
+    document.getElementById('fc-name').value=c.name;
+    document.getElementById('fc-code').value=c.code||'';
+    document.getElementById('fc-day').value=c.day;
+    document.getElementById('fc-period').value=c.period;
+    document.getElementById('fc-room').value=c.room||'';
+    document.getElementById('fc-teacher').value=c.teacher||'';
+    document.getElementById('fc-email').value=c.email||'';
+    document.getElementById('fc-office').value=c.office||'';
+    document.getElementById('fc-note').value=c.note||'';
+    document.getElementById('fc-single').value=c.isSingle?'1':'0';
+    document.getElementById('fc-sdate').value=c.singleDate||'';
+    toggleSingle();
+    buildQSelect(c.quarterId||null);
+    buildColors(_selColor);
+    document.getElementById('del-class-wrap').style.display='none';
+    document.getElementById('m-class').style.display='flex';
+  }
+
+  function _doDeleteClass(){
+    if(!_delClsId){ alert('削除対象が見つかりません'); return; }
+    if(!confirm('この時間割を削除しますか？')) return;
+    D.classes=D.classes.filter(x=>x.id!==_delClsId);
+    D.assignments.forEach(a=>{ if(a.classId===_delClsId) a.classId=null; });
+    _delClsId=null; _clsId=null;
+    dbSave();
+    document.getElementById('m-class').style.display='none';
+    renderCal();
+  }
+  function saveClass(){
+    const name=document.getElementById('fc-name').value.trim(); if(!name){alert('時間割名を入力してください');return;}
+    const isSingle=document.getElementById('fc-single').value==='1';
+    const singleDate=document.getElementById('fc-sdate').value;
+    if(isSingle&&!singleDate){alert('実施日を入力してください');return;}
+    const day=+document.getElementById('fc-day').value;
+    const period=+document.getElementById('fc-period').value;
+    const qId=document.getElementById('fc-quarter').value||null;
+    if(!isSingle){
+      const conflict=D.classes.find(c=>!c.isSingle&&c.day===day&&c.period===period&&c.id!==_clsId&&(c.quarterId||null)===qId);
+      if(conflict){alert(`${DAYS[day]}曜 ${period+1}限には「${conflict.name}」が既にあります`);return;}
+    }
+    const data={name,code:document.getElementById('fc-code').value.trim(),day,period,isSingle,
+      singleDate:isSingle?singleDate:null,quarterId:qId,
+      room:document.getElementById('fc-room').value,teacher:document.getElementById('fc-teacher').value,
+      email:document.getElementById('fc-email').value,office:document.getElementById('fc-office').value,
+      note:document.getElementById('fc-note').value,colorIdx:_selColor};
+    if(_clsId) Object.assign(D.classes.find(c=>c.id===_clsId),data);
+    else D.classes.push({id:uid(),...data});
+    dbSave(); closeModal('m-class'); renderCal();
+  }
+
+  // --- 授業詳細 ---
+  function openDetail(id){
+    const cls=D.classes.find(c=>c.id===id); if(!cls)return;
+    const wk=weekKey(weekOffset);
+    const ec=D.scheds.find(s=>s.week===wk&&s.origDay===cls.day&&s.origPeriod===cls.period);
+    const q=cls.quarterId?D.quarters.find(x=>x.id===cls.quarterId):null;
+    // 課題：代表IDで取得
+    const rid=repId(id);
+    const assigns=D.assignments.filter(a=>a.classId===rid);
+    const linkedCnt=D.classes.filter(c=>c.code&&c.code.trim()===cls.code?.trim()).length;
+    let html=`<h2>${cls.name}</h2>`;
+    if(cls.code) html+=`<div style="margin-bottom:10px"><span class="sbadge bq">${cls.code}</span>${linkedCnt>1?`<span style="font-size:11px;color:var(--mut);margin-left:6px">課題を${linkedCnt}コマで共有中</span>`:''}</div>`;
+    if(q) html+=`<div style="margin-bottom:10px"><span class="sbadge bs">${q.name}</span></div>`;
+    if(cls.isSingle) html+=`<div style="margin-bottom:10px"><span class="sbadge be">単発 ${dfmt(cls.singleDate)}</span></div>`;
+    if(ec) html+=`<div class="warnbox">この週は${ec.type==='cancel'?'休講':'時限変更'}が設定されています<button onclick="UI._rmSched('${ec.id}')" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:12px">削除</button></div>`;
+    if(cls.room)    html+=`<div class="dsec"><div class="dlbl">教室</div><div class="dval">${cls.room}</div></div>`;
+    if(cls.teacher) html+=`<div class="dsec"><div class="dlbl">担当教員</div><div class="dval">${cls.teacher}</div></div>`;
+    if(cls.email)   html+=`<div class="dsec"><div class="dlbl">メールアドレス</div><div class="dval"><a href="mailto:${cls.email}">${cls.email}</a></div></div>`;
+    if(cls.office)  html+=`<div class="dsec"><div class="dlbl">オフィス</div><div class="dval">${cls.office}</div></div>`;
+    if(cls.note)    html+=`<div class="dsec"><div class="dlbl">メモ</div><div class="dval" style="color:var(--mut);font-size:13px">${cls.note}</div></div>`;
+    html+=`<div class="sec-hdr"><span>課題 (${assigns.filter(a=>!a.done).length}件未完了)</span><button class="add-sm" onclick="UI.openAddAssignFor('${rid}')">+ 追加</button></div>`;
+    if(!assigns.length) html+=`<p style="color:var(--mut);font-size:12px;text-align:center;padding:10px">課題はありません</p>`;
+    else{
+      html+=`<div class="arows">`;
+      assigns.forEach(a=>{
+        const due=a.due?dueFmt(a.due):null;
+        html+=`<div class="arow">
+          <div class="arow-chk${a.done?' done':''}" onclick="UI.toggleAssign('${a.id}',true,'${id}')"></div>
+          <div class="arow-i">
+            <div class="arow-n${a.done?' done':''}">${a.name}</div>
+            ${due?`<div class="arow-d"><span class="adue ${due.cls}">${due.txt}</span></div>`:''}
+          </div>
+          <button onclick="UI.deleteAssign('${a.id}',true,'${id}')" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:13px;padding:2px 4px">削除</button>
+        </div>`;
+      });
+      html+=`</div>`;
+    }
+    const body = document.getElementById('detail-body');
+    body.innerHTML = html;
+
+    // btn-rowをDOMで生成
+    const actDiv = document.createElement('div');
+    actDiv.className = 'btn-row';
+    actDiv.style.marginTop = '14px';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'btn btn-s';
+    closeBtn.textContent = '閉じる';
+    closeBtn.addEventListener('click', function(){ UI.closeModal('m-detail'); });
+    actDiv.appendChild(closeBtn);
+
+    if(!cls.isSingle){
+      const schedBtn = document.createElement('button');
+      schedBtn.className = 'btn btn-s';
+      schedBtn.textContent = '変更';
+      schedBtn.addEventListener('click', function(){ UI.closeModal('m-detail'); UI.openSched(id); });
+      actDiv.appendChild(schedBtn);
+    }
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'btn btn-p';
+    editBtn.textContent = '編集';
+    editBtn.addEventListener('click', function(){ UI.closeModal('m-detail'); UI.openEditClass(id); });
+    actDiv.appendChild(editBtn);
+
+    body.appendChild(actDiv);
+
+    const delWrap = document.createElement('div');
+    delWrap.style.marginTop = '8px';
+    const delBtn = document.createElement('button');
+    delBtn.className = 'btn btn-d';
+    delBtn.textContent = 'この時間割を削除';
+    delBtn.addEventListener('click', function(){
+      if(!confirm('この時間割を削除しますか？')) return;
+      D.classes = D.classes.filter(function(x){ return x.id !== id; });
+      D.assignments = D.assignments.map(function(a){
+        return a.classId === id ? Object.assign({}, a, {classId: null}) : a;
+      });
+      localStorage.setItem(DB_KEY, JSON.stringify(D));
+      document.getElementById('m-detail').style.display = 'none';
+      renderCal();
+    });
+    delWrap.appendChild(delBtn);
+    body.appendChild(delWrap);
+
+    document.getElementById('m-detail').style.display='flex';
+  }
+  function _rmSched(id){
+    D.scheds=D.scheds.filter(s=>s.id!==id);
+    dbSave(); closeModal('m-detail'); renderCal();
+  }
+
+  // --- スケジュール変更 ---
+  function openSched(classId){
+    _schedId=classId;
+    const cls=D.classes.find(c=>c.id===classId);
+    document.getElementById('msched-title').textContent=cls.name+' の変更';
+    document.getElementById('fs-type').value='cancel';
+    document.getElementById('fs-note').value='';
+    document.getElementById('fs-day').value=cls.day;
+    document.getElementById('fs-period').value=cls.period;
+    toggleSched();
+    document.getElementById('m-sched').style.display='flex';
+  }
+  function toggleSched(){ document.getElementById('fs-move').style.display=document.getElementById('fs-type').value==='move'?'block':'none'; }
+  function saveSched(){
+    const cls=D.classes.find(c=>c.id===_schedId);
+    const type=document.getElementById('fs-type').value;
+    const wk=weekKey(weekOffset);
+    const entry={id:uid(),week:wk,type,origDay:cls.day,origPeriod:cls.period,note:document.getElementById('fs-note').value};
+    if(type==='move'){entry.newDay=+document.getElementById('fs-day').value;entry.newPeriod=+document.getElementById('fs-period').value;}
+    D.scheds.push(entry); dbSave(); closeModal('m-sched'); renderCal();
+  }
+
+  // --- 課題 ---
+  function buildAssignSelect(selId){
+    const s=document.getElementById('fa-class');
+    s.innerHTML='<option value="">（時間割なし）</option>';
+    // 代表IDのみを表示（重複グループは1つにまとめる）
+    const seen=new Set();
+    D.classes.forEach(c=>{
+      const rid=repId(c.id);
+      if(seen.has(rid)) return;
+      seen.add(rid);
+      const rc=D.classes.find(x=>x.id===rid);
+      const o=document.createElement('option'); o.value=rid;
+      const q=rc.quarterId?D.quarters.find(x=>x.id===rc.quarterId):null;
+      o.textContent=rc.name+(rc.code?` (${rc.code})`:'')+(q?` [${q.name}]`:'');
+      if(selId&&selId===rid) o.selected=true;
+      s.appendChild(o);
+    });
+  }
+  function openAddAssign(){
+    _assignId=null;
+    document.getElementById('massign-title').textContent='課題を追加';
+    buildAssignSelect(null);
+    ['fa-name','fa-due','fa-note'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('del-assign-wrap').style.display='none';
+    document.getElementById('m-assign').style.display='flex';
+  }
+  function openAddAssignFor(rid){
+    closeModal('m-detail');
+    _assignId=null;
+    document.getElementById('massign-title').textContent='課題を追加';
+    buildAssignSelect(rid);
+    ['fa-name','fa-due','fa-note'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('del-assign-wrap').style.display='none';
+    document.getElementById('m-assign').style.display='flex';
+  }
+  function openEditAssign(id){
+    const a=D.assignments.find(x=>x.id===id); if(!a)return;
+    _assignId=id;
+    window._pendingDeleteAssignId = id; // グローバルにセット
+    document.getElementById('massign-title').textContent='課題を編集';
+    buildAssignSelect(a.classId);
+    document.getElementById('fa-name').value=a.name;
+    document.getElementById('fa-due').value=a.due||'';
+    document.getElementById('fa-note').value=a.note||'';
+    const dw=document.getElementById('del-assign-wrap'); dw.style.display='block';
+    const oldBtn=document.getElementById('del-assign-btn');
+    const newBtn=oldBtn.cloneNode(true);
+    newBtn.addEventListener('click',()=>{
+      if(!confirm('課題を削除しますか？')) return;
+      D.assignments=D.assignments.filter(x=>x.id!==id);
+      dbSave(); document.getElementById('m-assign').style.display='none'; renderAssigns();
+    });
+    dw.replaceChild(newBtn,oldBtn);
+    document.getElementById('m-assign').style.display='flex';
+  }
+  function saveAssign(){
+    const name=document.getElementById('fa-name').value.trim(); if(!name){alert('課題名を入力してください');return;}
+    const classId=document.getElementById('fa-class').value||null;
+    const data={name,classId,due:document.getElementById('fa-due').value,note:document.getElementById('fa-note').value};
+    if(_assignId) Object.assign(D.assignments.find(x=>x.id===_assignId),data);
+    else D.assignments.push({id:uid(),...data,done:false});
+    dbSave(); closeModal('m-assign'); renderAssigns();
+  }
+  function toggleAssign(id, fromDetail=false, clsId=null){
+    const a=D.assignments.find(x=>x.id===id); if(a) a.done=!a.done;
+    dbSave();
+    if(fromDetail&&clsId) openDetail(clsId);
+    else{ renderAssigns(); renderCal(); }
+  }
+  function deleteAssign(id, fromDetail=false, clsId=null){
+    D.assignments=D.assignments.filter(x=>x.id!==id);
+    dbSave();
+    if(fromDetail&&clsId) openDetail(clsId);
+    else renderAssigns();
+  }
+
+  // --- 課題詳細 ---
+  function openADetail(id){
+    const a=D.assignments.find(x=>x.id===id); if(!a)return;
+    const cls=a.classId?D.classes.find(c=>c.id===a.classId):null;
+    const due=a.due?dueFmt(a.due):null;
+    let html=`<h2>${a.name}</h2>`;
+    if(cls) html+=`<div class="dsec"><div class="dlbl">時間割</div><div class="dval">${cls.name}${cls.code?` (${cls.code})`:''}</div></div>`;
+    if(due) html+=`<div class="dsec"><div class="dlbl">期限</div><div class="dval"><span class="adue ${due.cls}">${due.txt}</span></div></div>`;
+    if(a.note) html+=`<div class="dsec"><div class="dlbl">メモ</div><div class="dval" style="font-size:13px;color:var(--mut);white-space:pre-wrap">${a.note}</div></div>`;
+    html+=`<div class="btn-row">
+      <button class="btn btn-s" onclick="UI.closeModal('m-adetail')">閉じる</button>
+      <button class="btn btn-p" onclick="UI.closeModal('m-adetail');UI.openEditAssign('${a.id}')">編集</button>
+    </div>`;
+    document.getElementById('adetail-body').innerHTML=html;
+    document.getElementById('m-adetail').style.display='flex';
+  }
+
+  // --- 学期 ---
+  function openPeriod(id){
+    const p=id?D.periods.find(x=>x.id===id):null;
+    document.getElementById('mperiod-title').textContent=p?'学期・休業期間を編集':'学期・休業期間を追加';
+    document.getElementById('fp-name').value=p?p.name:'';
+    document.getElementById('fp-type').value=p?p.type:'semester';
+    document.getElementById('fp-start').value=p?p.start:'';
+    document.getElementById('fp-end').value=p?p.end:'';
+    const dw=document.getElementById('del-period-wrap'); dw.style.display=p?'block':'none';
+    if(p){
+      const oldBtn=document.getElementById('del-period-btn');
+      const newBtn=oldBtn.cloneNode(true);
+      newBtn.addEventListener('click',()=>{ D.periods=D.periods.filter(x=>x.id!==id); dbSave(); closeModal('m-period'); renderSettings(); renderCal(); });
+      dw.replaceChild(newBtn,oldBtn);
+    }
+    document.getElementById('m-period').style.display='flex';
+  }
+  function savePeriod(){
+    const name=document.getElementById('fp-name').value.trim(),start=document.getElementById('fp-start').value,end=document.getElementById('fp-end').value;
+    if(!name||!start||!end){alert('名称・開始日・終了日を入力してください');return;}
+    const data={name,type:document.getElementById('fp-type').value,start,end};
+    const ex=D.periods.find(x=>x.id&&document.getElementById('fp-name').value); // find by current editing
+    // シンプルに：編集中idがあれば更新、なければ追加
+    const editing=D.periods.find(x=>x.name===data.name&&x.start===data.start); // fallback
+    if(editing) Object.assign(editing,data); else D.periods.push({id:uid(),...data});
+    dbSave(); closeModal('m-period'); renderSettings(); renderCal();
+  }
+
+  // --- クォーター ---
+  function openQuarter(id){
+    const q=id?D.quarters.find(x=>x.id===id):null;
+    document.getElementById('mquarter-title').textContent=q?'クォーターを編集':'クォーターを追加';
+    document.getElementById('fq-name').value=q?q.name:'';
+    document.getElementById('fq-start').value=q?q.start:'';
+    document.getElementById('fq-end').value=q?q.end:'';
+    const dw=document.getElementById('del-quarter-wrap'); dw.style.display=q?'block':'none';
+    if(q){
+      const oldBtn=document.getElementById('del-quarter-btn');
+      const newBtn=oldBtn.cloneNode(true);
+      newBtn.addEventListener('click',()=>{ D.quarters=D.quarters.filter(x=>x.id!==id); dbSave(); closeModal('m-quarter'); renderSettings(); renderCal(); });
+      dw.replaceChild(newBtn,oldBtn);
+    }
+    document.getElementById('m-quarter').style.display='flex';
+  }
+  function saveQuarter(){
+    const name=document.getElementById('fq-name').value.trim(),start=document.getElementById('fq-start').value,end=document.getElementById('fq-end').value;
+    if(!name||!start||!end){alert('名称・開始日・終了日を入力してください');return;}
+    const q=D.quarters.find(x=>x.name===name&&x.start===start);
+    if(q) Object.assign(q,{name,start,end}); else D.quarters.push({id:uid(),name,start,end});
+    dbSave(); closeModal('m-quarter'); renderSettings(); renderCal();
+  }
+
+  // --- 行事 ---
+  function openEvent(id){
+    const ev=id?D.events.find(x=>x.id===id):null;
+    document.getElementById('mevent-title').textContent=ev?'行事を編集':'行事を追加';
+    document.getElementById('fe-name').value=ev?ev.name:'';
+    document.getElementById('fe-start').value=ev?ev.start:'';
+    document.getElementById('fe-end').value=ev?ev.end||'':'';
+    document.getElementById('fe-note').value=ev?ev.note||'':'';
+    const dw=document.getElementById('del-event-wrap'); dw.style.display=ev?'block':'none';
+    if(ev){
+      const oldBtn=document.getElementById('del-event-btn');
+      const newBtn=oldBtn.cloneNode(true);
+      newBtn.addEventListener('click',()=>{ D.events=D.events.filter(x=>x.id!==id); dbSave(); closeModal('m-event'); renderSettings(); renderCal(); });
+      dw.replaceChild(newBtn,oldBtn);
+    }
+    document.getElementById('m-event').style.display='flex';
+  }
+  function saveEvent(){
+    const name=document.getElementById('fe-name').value.trim(),start=document.getElementById('fe-start').value;
+    if(!name||!start){alert('行事名・開始日を入力してください');return;}
+    const end=document.getElementById('fe-end').value||start;
+    const data={name,start,end,note:document.getElementById('fe-note').value};
+    const ev=D.events.find(x=>x.name===name&&x.start===start);
+    if(ev) Object.assign(ev,data); else D.events.push({id:uid(),...data});
+    dbSave(); closeModal('m-event'); renderSettings(); renderCal();
+  }
+
+  return {
+    tab, weekShift, closeModal, closeSheet,
+    openCellSheet, openMemo, saveMemo,
+    toggleSingle, _pickColor,
+    openEditClass, saveClass, _doDeleteClass,
+    openDetail, _rmSched,
+    openSched, toggleSched, saveSched,
+    openAddAssign, openAddAssignFor, openEditAssign, saveAssign,
+    toggleAssign, deleteAssign, openADetail,
+    openPeriod, savePeriod,
+    openQuarter, saveQuarter,
+    openEvent, saveEvent,
+  };
+})();
+
+// UIの外にグローバル関数として定義（HTML onclick属性から確実に呼べる）
+function doDeleteClass(id){
+  if(!confirm('この時間割を削除しますか？')) return;
+  const before = D.classes.length;
+  const ids = D.classes.map(function(x){ return x.id; }).join('\n');
+  alert('受け取ったID:\n' + id + '\n\n登録済みID一覧:\n' + ids);
+  D.classes = D.classes.filter(function(x){ return x.id !== id; });
+  D.assignments = D.assignments.map(function(a){
+    return a.classId === id ? Object.assign({}, a, {classId: null}) : a;
+  });
+  try { localStorage.setItem(DB_KEY, JSON.stringify(D)); } catch(e){ alert('保存エラー: '+e); return; }
+  document.getElementById('m-detail').style.display = 'none';
+  document.getElementById('m-class').style.display = 'none';
+  renderCal();
+}
+function doDeleteAssign(){
+  const id = window._pendingDeleteAssignId;
+  if(!id) return;
+  if(!confirm('課題を削除しますか？')) return;
+  D.assignments = D.assignments.filter(x => x.id !== id);
+  window._pendingDeleteAssignId = null;
+  dbSave();
+  document.getElementById('m-assign').style.display = 'none';
+  renderAssigns();
+}
+dbLoad();
+applyTheme(D.theme||'minimal');
+renderCal();
 </script>
 </body>
 </html>
