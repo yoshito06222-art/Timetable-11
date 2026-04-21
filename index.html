@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#fafafa" id="theme-color-meta">
 <meta name="apple-mobile-web-app-title" content="Timetable">
 <link rel="apple-touch-icon" href="icon.png">
 <title>Timetable</title>
@@ -523,6 +524,9 @@ const THEMES = [
 function applyTheme(id){
   document.body.className = 'th-'+id;
   D.theme = id; dbSave(); renderThemeGrid();
+  // SafariのURLバー・ホームインジケーター周辺の色をテーマに合わせる
+  const t = THEMES.find(function(x){ return x.id===id; }) || THEMES[0];
+  document.getElementById('theme-color-meta').setAttribute('content', t.bg);
 }
 function renderThemeGrid(){
   document.getElementById('theme-grid').innerHTML = THEMES.map(function(t){
