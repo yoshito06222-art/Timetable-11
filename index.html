@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+/* ボトムシート（下から出るモーダル）*/
+.ov:not(.mid){padding-bottom:0}
+.modal:not(.mid-modal){border-radius:18px 18px 0 0;padding-bottom:max(24px,env(safe-area-inset-bottom))}<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -663,6 +665,13 @@ function renderCal(){
         b.style.cssText='background:rgba(229,57,53,.1);border-left:3px solid var(--red)';
         b.innerHTML='<div class="cblk-name" style="color:var(--red)">休講</div>';
         cell.appendChild(b);
+        // 休講セルをタップしたら元の授業の詳細を開く
+        const origCls = D.classes.find(function(c){
+          return c.day===d&&c.period===p&&(!c.quarterId||aqIds.includes(c.quarterId));
+        });
+        if(origCls){
+          (function(clsId){ cell.addEventListener('click', function(){ openDetail(clsId); }); })(origCls.id);
+        }
       } else if(cls){
         const hasUndone = classAssigns(cls).some(function(a){ return !a.done; });
         const ci = cls.colorIdx % 8;
